@@ -1,0 +1,15 @@
+doctype html
+html(lang='en')
+  head
+    include components/head
+
+  body
+    block body-start
+    block body-end
+
+  //- SCRIPTS
+  block scripts
+    script(
+      src='/assets/vendor/requirejs/require.js',
+      data-main='/assets/js/index.js'
+    )
