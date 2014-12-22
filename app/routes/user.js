@@ -18,6 +18,13 @@ function login(req, res) {
   });
 }
 
+/**
+ * Settings
+ */
+function settings(req, res) {
+  res.send(req.user);
+}
+
 function isAuthorized(req, res, next) {
   if (!req.user) {
     res.redirect('/');
@@ -29,15 +36,16 @@ function isAuthorized(req, res, next) {
 function setup(app, passport) {
   app.get('/login', login);
   app.get('/signup', signup);
+  app.get('/settings', isAuthorized, settings);
 
   app.post('/signup', passport.authenticate('signup', {
-    successRedirect : '/',
+    successRedirect : '/invoices',
     failureRedirect : '/signup',
     failureFlash : true
   }));
 
   app.post('/login', passport.authenticate('login', {
-    successRedirect : '/',
+    successRedirect : '/invoices',
     failureRedirect : '/login',
     failureFlash : true
   }));
