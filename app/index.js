@@ -37,9 +37,10 @@ app.use('/assets', express.static(__dirname + '/assets'));
 
 // routes ================================================
 [
-  'user'
-].forEach(function(group) {
-  require('./routes/'+group)(app, passport);
+  './routes/user',
+  './routes/clients'
+].forEach(function(routePath) {
+  require(routePath)(app, passport);
 });
 
 // launch ================================================
