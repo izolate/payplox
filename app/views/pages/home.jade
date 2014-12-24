@@ -1,4 +1,14 @@
 extend ../layout
 
 append body-start
-  h1 hello world
+  h1 payplox
+  nav
+    a(href='/login') Login
+    span &dash;
+    a(href='/signup') Signup
+    if req.user
+      span &dash;
+      a(href='/clients') Clients
+      span &dash;
+      a(href='/invoices') Invoices
+

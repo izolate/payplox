@@ -1,0 +1,4 @@
+mixin clientList(client)
+  li.client-list__item
+    a(href='/clients/edit/#{client._id}')
+      h3 #{client.name}

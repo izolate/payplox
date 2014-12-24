@@ -1,7 +1,15 @@
 extend ../layout
 
+include ../components/form/client
+include ../components/clients
+
 append body-start
-  h1 #{clients.length} Clients
-  include ../components/form/client.jade
+  h1 Clients (#{clients.length})
+  if clients
+    ul.client-list
+      for client in clients
+        +clientList(client)
+
+  +clientAdd()
   - var c = JSON.stringify(clients)
   textarea(style='font-family: monospace') #{c}

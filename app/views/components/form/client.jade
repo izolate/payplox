@@ -1,27 +1,28 @@
-form(name='createClient', method='post', action='/clients')
-  h3 Client information
-  .form__item
-    input(name='name', type='text', placeholder='Client name')
-  .form__item
-    input(name='address[line1]', type='text', placeholder='Address (line 1)')
-  .form__item
-    input(name='address[line2]', type='text', placeholder='Address (line 2)')
-  .form__item
-    input(name='address[line3]', type='text', placeholder='Address (line 3)')
-  .form__item
-    input(name='address[town]', type='text', placeholder='Town')
-  .form__item
-    input(name='address[county]', type='text', placeholder='County')
-  .form__item
-    input(name='address[postcode]', type='text', placeholder='Postcode')
-  .form__item
-    input(name='address[country]', type='text', placeholder='Country')
-  h3 Contact information
-  .form__item
-    input(name='contact[name]', type='text', placeholder='Contact\'s name', required)
-  .form__item
-    input(name='contact[email]', type='email', placeholder='Contact\'s email', required)
-  .form__item
-    input(name='contact[phone]', type='tel', placeholder='Contact\'s phone')
-  .form__item.submit
-    button(type='submit') Add new client
+mixin clientAdd()
+  form(name='createClient', method='post', action='/clients')
+    h3 Client information
+    .form__item
+      input(name='name', type='text', placeholder='Client name' value='#{client.name?}')
+    .form__item
+      input(name='address[line1]', type='text', placeholder='Address (line 1)')
+    .form__item
+      input(name='address[line2]', type='text', placeholder='Address (line 2)')
+    .form__item
+      input(name='address[line3]', type='text', placeholder='Address (line 3)')
+    .form__item
+      input(name='address[town]', type='text', placeholder='Town')
+    .form__item
+      input(name='address[county]', type='text', placeholder='County')
+    .form__item
+      input(name='address[postcode]', type='text', placeholder='Postcode')
+    .form__item
+      input(name='address[country]', type='text', placeholder='Country')
+    h3 Contact information
+    .form__item
+      input(name='contact[name]', type='text', placeholder='Contact\'s name', required)
+    .form__item
+      input(name='contact[email]', type='email', placeholder='Contact\'s email', required)
+    .form__item
+      input(name='contact[phone]', type='tel', placeholder='Contact\'s phone')
+    .form__item.submit
+      button(type='submit') Add new client
