@@ -1,3 +1,5 @@
+var help = require('app/controllers/helpers');
+
 /**
  * Signup
  */
@@ -37,16 +39,16 @@ function isAuthorized(req, res, next) {
 function setup(app, passport) {
   app.get('/login', login);
   app.get('/signup', signup);
-  app.get('/settings', isAuthorized, settings);
+  app.get('/settings', help.protect, settings);
 
   app.post('/signup', passport.authenticate('signup', {
-    successRedirect : '/invoices',
+    successRedirect : '/',
     failureRedirect : '/signup',
     failureFlash : true
   }));
 
   app.post('/login', passport.authenticate('login', {
-    successRedirect : '/invoices',
+    successRedirect : '/',
     failureRedirect : '/login',
     failureFlash : true
   }));
