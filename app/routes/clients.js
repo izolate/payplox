@@ -15,18 +15,15 @@ function getClients(req, res) {
 }
 
 function getSingleClient(req, res) {
-  var client = Client.findOne({ '_id': req.params.clientId })
+  var query = Client
+    .findOne({ '_id':req.params.clientId, '_user':req.user._id })
     .lean()
     .exec(function(err, resp) {
       if (err) throw err;
 
-      // ensure client belongs to user
-      if (resp._user.toString() != req.user._id.toString())
-        res.send(404); // TODO gen 404
-      else
-        res.render('pages/client', {
-          client: resp, csrfToken: req.csrfToken()
-        });
+      res.render('pages/client', {
+        client: resp, csrfToken: req.csrfToken()
+      });
     });
 }
 
