@@ -7,7 +7,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
-var csrf = require('csurf');
 var log = require('winston').loggers.get('app:server');
 
 // config ================================================
@@ -24,14 +23,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // CSRF
-app.use(csrf());
-app.use(function (err, req, res, next) {
-  if (err.code !== 'EBADCSRFTOKEN') return next(err);
-
-  // handle CSRF token errors here
-  res.status(403);
-  res.send('session has expired or form tampered with');
-});
+require('./controllers/csrf')(app);
 
 // passport
 require('./controllers/passport')(passport);
