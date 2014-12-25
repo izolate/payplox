@@ -14,7 +14,8 @@ function signup(req, res) {
 function login(req, res) {
   res.render('pages/user', {
     form: 'login',
-    message: req.flash('message')
+    message: req.flash('message'),
+    csrfToken: req.csrfToken()
   });
 }
 

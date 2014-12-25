@@ -8,11 +8,29 @@ function getClients(req, res) {
     .lean()
     .exec(function(err, clients) {
       if (err) throw err;
-      res.render('pages/clients', { clients: clients });
+      res.render('pages/clients', {
+        clients: clients, csrfToken: req.csrfToken()
+      });
     });
 }
 
-function createClient(req, res, next) {
+function getSingleClient(req, res) {
+  var client = Client.findOne({ '_id': req.params.clientId })
+    .lean()
+    .exec(function(err, resp) {
+      if (err) throw err;
+
+      // ensure client belongs to user
+      if (resp._user.toString() != req.user._id.toString())
+        res.send(404); // TODO gen 404
+      else
+        res.render('pages/client', {
+          client: resp, csrfToken: req.csrfToken()
+        });
+    });
+}
+
+function postClients(req, res, next) {
   var data = req.body;
   data._user = req.user._id;
 
@@ -25,21 +43,7 @@ function createClient(req, res, next) {
   res.render('pages/clients');
 }
 
-function editClient(req, res) {
-  var client = Client.findOne({ '_id': req.params.clientId })
-    .lean()
-    .exec(function(err, resp) {
-      if (err) throw err;
-
-      // ensure client belongs to user
-      if (resp._user.toString() != req.user._id.toString())
-        res.send(404); // TODO gen 404
-      else
-        res.render('pages/client', { client: resp });
-    });
-}
-
-function putClient(req, res) {
+function putClients(req, res) {
   var put = Client.update({
       '_id':req.params.clientId,
       '_user':req.user._id
@@ -53,13 +57,14 @@ function putClient(req, res) {
 
 function setup(app, passport) {
 
-  // all
+  // get all
   app.get('/clients', help.protect, getClients);
-  app.post('/clients', help.protect, createClient);
-
-  // single
-  app.get('/client/:clientId', help.protect, editClient);
-  app.post('/client/:clientId', help.protect, putClient);
+  // get single
+  app.get('/clients/:clientId', help.protect, getSingleClient);
+  // create new
+  app.post('/clients', help.protect, postClients);
+  // edit
+  app.post('/clients/:clientId', help.protect, putClients);
 }
 
 module.exports = setup;

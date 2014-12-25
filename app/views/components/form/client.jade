@@ -24,11 +24,13 @@ mixin clientAdd()
       input(name='contact[email]', type='email', placeholder='Contact\'s email', required)
     .form__item
       input(name='contact[phone]', type='tel', placeholder='Contact\'s phone')
+    .form__item.hidden
+      input(type='hidden', name='_csrf', value=csrfToken)
     .form__item.submit
       button(type='submit') Add new client
 
 mixin clientEdit(client)
-  form(name='createClient', method='post', action='/client/#{client._id}')
+  form(name='createClient', method='post', action='/clients/#{client._id}')
     h1 #{client.name}
     h3 Client information
     .form__item
@@ -54,5 +56,7 @@ mixin clientEdit(client)
       input(name='contact[email]', type='email', placeholder='Contact\'s email', value='#{client.contact.email}', required)
     .form__item
       input(name='contact[phone]', type='tel', placeholder='Contact\'s phone', value='#{client.contact.phone}')
+    .form__item.hidden
+      input(type='hidden', name='_csrf', value=csrfToken)
     .form__item.submit
       button(type='submit') Save client

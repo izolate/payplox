@@ -3,6 +3,8 @@ form(name=form, method='post', action='/#{form}')
     input(type='email', name='email', placeholder='email', required)
   .form__item
     input(type='password', name='password', placeholder='password', required)
+  .form__item.hidden
+    input(type='hidden', name='_csrf', value=csrfToken)
   .form__item
     button(type='submit') #{form}
   if message
