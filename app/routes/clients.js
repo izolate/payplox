@@ -38,6 +38,7 @@ function isAuthorized(req, res, next) {
 function setup(app, passport) {
   app.get('/clients', getClients);
   app.post('/clients', createClient);
+ // app.get('/clients/edit/:clientId, editClient);
 }
 
 module.exports = setup;

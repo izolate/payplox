@@ -23,7 +23,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // passport
-require('./passport')(passport);
+require('./controllers/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
