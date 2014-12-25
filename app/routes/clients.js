@@ -55,9 +55,10 @@ function postClients(req, res, next) {
  * @method: POST
  */
 function putClients(req, res) {
-  var put = Client.update({
-      '_id':req.params.clientId,
-      '_user':req.user._id
+  var put = Client
+    .update({
+      '_id': req.params.clientId,
+      '_user': req.user._id
     },
     req.body, null, function(err, edited, resp) {
       if (err) throw err;
