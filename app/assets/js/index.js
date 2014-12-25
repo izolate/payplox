@@ -1,15 +1,15 @@
-require.config({
-  paths: {
-    'jquery': '/assets/vendor/jquery/dist/jquery.min',
-    'jquery.serializeJSON': '/assets/vendor/jquery.serializeJSON/jquery.serializejson.min'
-  },
-  shim: {
-    'jquery.serializeJSON': ['jquery']
-  }
-});
+var Emitter = require('wildemitter');
+var domready = require('domready');
 
-require([
-  // ...
-], function () {
-  console.info('App started...');
+var app = {
+  events: new Emitter(),
+  $el: {}
+};
+
+require('./config')(app);
+
+// let's go
+domready(function() {
+  app.events.emit('domready');
+  console.info(app.config.name + ' started');
 });
