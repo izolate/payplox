@@ -2,7 +2,7 @@ mixin clientAdd()
   form.client-form(name='createClient', method='post', action='/clients')
     h3 Client information
     .client-form__item
-      input(name='name', type='text', placeholder='Client name' value='#{client.name?}')
+      input(name='name', type='text', placeholder='Client name')
     .client-form__item
       input(name='address[line1]', type='text', placeholder='Address (line 1)')
     .client-form__item
