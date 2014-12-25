@@ -4,6 +4,8 @@ mixin clientAdd()
     .client-form__item
       input(name='name', type='text', placeholder='Client name')
     .client-form__item
+      input(name='company_number', type='text', placeholder='Company number (if applicable)')
+    .client-form__item
       input(name='address[line1]', type='text', placeholder='Address (line 1)')
     .client-form__item
       input(name='address[line2]', type='text', placeholder='Address (line 2)')
@@ -35,6 +37,8 @@ mixin clientEdit(client)
     h3 Client information
     .client-form__item
       input(name='name', type='text', placeholder='Client name', value='#{client.name}')
+    .client-form__item
+      input(name='company_number', type='text', placeholder='Company number (if applicable)')
     .client-form__item
       input(name='address[line1]', type='text', placeholder='Address (line 1)', value='#{client.address.line1}')
     .client-form__item

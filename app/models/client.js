@@ -9,6 +9,7 @@ var User = require('./user');
 var schema = mongoose.Schema({
   _user: { type: Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
+  company_number: String,
   address: {
     line1: { type: String, required: true },
     line2: String,
