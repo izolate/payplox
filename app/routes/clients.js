@@ -1,6 +1,7 @@
 var Client = require('app/models/client');
 var ObjectId = require('mongoose').Types.ObjectId;
 var help = require('app/controllers/helpers');
+var countries = require('country-list')();
 
 /**
  * Get all available clients
@@ -13,7 +14,9 @@ function getClients(req, res) {
     .exec(function(err, clients) {
       if (err) throw err;
       res.render('pages/clients', {
-        clients: clients, csrfToken: req.csrfToken()
+        clients: clients,
+        csrfToken: req.csrfToken(),
+        countries: countries.getData()
       });
     });
 }
@@ -30,7 +33,9 @@ function getSingleClient(req, res) {
       if (err) throw err;
 
       res.render('pages/client', {
-        client: resp, csrfToken: req.csrfToken()
+        client: resp,
+        csrfToken: req.csrfToken(),
+        countries: countries.getData()
       });
     });
 }

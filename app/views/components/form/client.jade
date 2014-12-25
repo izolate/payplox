@@ -18,7 +18,13 @@ mixin clientAdd()
     .client-form__item
       input(name='address[postcode]', type='text', placeholder='Postcode')
     .client-form__item
-      input(name='address[country]', type='text', placeholder='Country')
+      select(name='address[country]')
+        for country in countries
+          if country.code === 'GB'
+            option(value='#{country.code}', selected) #{country.name}
+          else
+            option(value='#{country.code}') #{country.name}
+
     h3 Contact information
     .client-form__item
       input(name='contact[name]', type='text', placeholder='Contact\'s name', required)
@@ -52,7 +58,12 @@ mixin clientEdit(client)
     .client-form__item
       input(name='address[postcode]', type='text', placeholder='Postcode', value='#{client.address.postcode}')
     .client-form__item
-      input(name='address[country]', type='text', placeholder='Country', value='#{client.address.country}')
+      select(name='address[country]')
+        for country in countries
+          if country.code === 'GB'
+            option(value='#{country.code}', selected) #{country.name}
+          else
+            option(value='#{country.code}') #{country.name}
     h3 Contact information
     .client-form__item
       input(name='contact[name]', type='text', placeholder='Contact\'s name', value='#{client.contact.name}', required)
