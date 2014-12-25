@@ -28,14 +28,6 @@ function settings(req, res) {
   res.send(req.user);
 }
 
-function isAuthorized(req, res, next) {
-  if (!req.user) {
-    res.redirect('/');
-  } else {
-    next();
-  }
-}
-
 function setup(app, passport) {
   app.get('/login', login);
   app.get('/signup', signup);
