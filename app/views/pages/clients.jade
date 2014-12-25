@@ -4,8 +4,9 @@ include ../components/form/client
 include ../components/clients
 
 append body-start
-  h1 Clients (#{clients.length})
+
   if clients
+    h1 Clients (#{clients.length})
     ul.client-list
       for client in clients
         +clientList(client)

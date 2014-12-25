@@ -2,6 +2,9 @@ var Client = require('app/models/client');
 var ObjectId = require('mongoose').Types.ObjectId;
 var help = require('app/controllers/helpers');
 
+/**
+ * Get all available clients
+ */
 function getClients(req, res) {
   var query = Client
     .find({ '_user': new ObjectId(req.user._id) })
@@ -14,6 +17,9 @@ function getClients(req, res) {
     });
 }
 
+/**
+ * Get a single client
+ */
 function getSingleClient(req, res) {
   var query = Client
     .findOne({ '_id':req.params.clientId, '_user':req.user._id })
@@ -27,6 +33,9 @@ function getSingleClient(req, res) {
     });
 }
 
+/**
+ * Create a new client
+ */
 function postClients(req, res, next) {
   var data = req.body;
   data._user = req.user._id;
@@ -34,12 +43,13 @@ function postClients(req, res, next) {
   var client = new Client(data);
   client.save(function(err, resp) {
     if (err) throw err;
-    next();
+    res.redirect('/clients');
   });
-
-  res.render('pages/clients');
 }
 
+/**
+ * Update an existing client
+ */
 function putClients(req, res) {
   var put = Client.update({
       '_id':req.params.clientId,
