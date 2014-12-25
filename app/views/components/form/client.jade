@@ -1,63 +1,63 @@
 mixin clientAdd()
-  form(name='createClient', method='post', action='/clients')
+  form.client-form(name='createClient', method='post', action='/clients')
     h3 Client information
-    .form__item
+    .client-form__item
       input(name='name', type='text', placeholder='Client name' value='#{client.name?}')
-    .form__item
+    .client-form__item
       input(name='address[line1]', type='text', placeholder='Address (line 1)')
-    .form__item
+    .client-form__item
       input(name='address[line2]', type='text', placeholder='Address (line 2)')
-    .form__item
+    .client-form__item
       input(name='address[line3]', type='text', placeholder='Address (line 3)')
-    .form__item
+    .client-form__item
       input(name='address[town]', type='text', placeholder='Town')
-    .form__item
+    .client-form__item
       input(name='address[county]', type='text', placeholder='County')
-    .form__item
+    .client-form__item
       input(name='address[postcode]', type='text', placeholder='Postcode')
-    .form__item
+    .client-form__item
       input(name='address[country]', type='text', placeholder='Country')
     h3 Contact information
-    .form__item
+    .client-form__item
       input(name='contact[name]', type='text', placeholder='Contact\'s name', required)
-    .form__item
+    .client-form__item
       input(name='contact[email]', type='email', placeholder='Contact\'s email', required)
-    .form__item
+    .client-form__item
       input(name='contact[phone]', type='tel', placeholder='Contact\'s phone')
-    .form__item.hidden
+    .client-form__item.hidden.csrf
       input(type='hidden', name='_csrf', value=csrfToken)
-    .form__item.submit
+    .client-form__item.submit
       button(type='submit') Add new client
 
 mixin clientEdit(client)
-  form(name='createClient', method='post', action='/clients/#{client._id}')
+  form.client-form(name='createClient', method='post', action='/clients/#{client._id}')
     h1 #{client.name}
     h3 Client information
-    .form__item
+    .client-form__item
       input(name='name', type='text', placeholder='Client name', value='#{client.name}')
-    .form__item
+    .client-form__item
       input(name='address[line1]', type='text', placeholder='Address (line 1)', value='#{client.address.line1}')
-    .form__item
+    .client-form__item
       input(name='address[line2]', type='text', placeholder='Address (line 2)', value='#{client.address.line2}')
-    .form__item
+    .client-form__item
       input(name='address[line3]', type='text', placeholder='Address (line 3)', value='#{client.address.line3}')
-    .form__item
+    .client-form__item
       input(name='address[town]', type='text', placeholder='Town', value='#{client.address.town}')
-    .form__item
+    .client-form__item
       input(name='address[county]', type='text', placeholder='County', value='#{client.address.county}')
-    .form__item
+    .client-form__item
       input(name='address[postcode]', type='text', placeholder='Postcode', value='#{client.address.postcode}')
-    .form__item
+    .client-form__item
       input(name='address[country]', type='text', placeholder='Country', value='#{client.address.country}')
     h3 Contact information
-    .form__item
+    .client-form__item
       input(name='contact[name]', type='text', placeholder='Contact\'s name', value='#{client.contact.name}', required)
-    .form__item
+    .client-form__item
       input(name='contact[email]', type='email', placeholder='Contact\'s email', value='#{client.contact.email}', required)
-    .form__item
+    .client-form__item
       input(name='contact[phone]', type='tel', placeholder='Contact\'s phone', value='#{client.contact.phone}')
-    .form__item.hidden
+    .client-form__item.hidden.csrf
       input(type='hidden', name='_csrf', value=csrfToken)
-    .form__item.submit
+    .client-form__item.submit
       button(type='submit') Save client
-      button.delete Delete client
+      button.delete-client(data-client-id='#{client._id}') Delete client
