@@ -44,7 +44,7 @@ mixin clientEdit(client)
     .client-form__item
       input(name='name', type='text', placeholder='Client name', value='#{client.name}')
     .client-form__item
-      input(name='company_number', type='text', placeholder='Company number (if applicable)')
+      input(name='company_number', type='text', placeholder='Company number (if applicable)', value='#{client.company_number}')
     .client-form__item
       input(name='address[line1]', type='text', placeholder='Address (line 1)', value='#{client.address.line1}')
     .client-form__item
