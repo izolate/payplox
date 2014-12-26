@@ -1,78 +1,58 @@
-mixin clientAdd()
-  form.client-form(name='createClient', method='post', action='/clients')
+mixin clientForm(form, client)
+  - var form = form || {name: 'addClient', action: '/clients'}
+  - var client = client || {isNull: true, address:{}, contact:{}}
+
+  form.client-form(name=form.name, method='post', action=form.action)
     h3 Client information
     .client-form__item
-      input(name='name', type='text', placeholder='Client name')
+      input(name='name', type='text', placeholder='Client or company name', value=client.name)
     .client-form__item
-      input(name='company_number', type='text', placeholder='Company number (if applicable)')
+      input(name='company_number', type='text', placeholder='Company number (if applicable)', value=client.company_number)
+
+    h3 Address
     .client-form__item
-      input(name='address[line1]', type='text', placeholder='Address (line 1)')
+      input(name='address[line1]', type='text', placeholder='Address (line 1)', value=client.address.line1)
     .client-form__item
-      input(name='address[line2]', type='text', placeholder='Address (line 2)')
+      input(name='address[line2]', type='text', placeholder='Address (line 2)', value=client.address.line2)
     .client-form__item
-      input(name='address[line3]', type='text', placeholder='Address (line 3)')
+      input(name='address[line3]', type='text', placeholder='Address (line 3)', value=client.address.line3)
     .client-form__item
-      input(name='address[town]', type='text', placeholder='Town')
+      input(name='address[town]', type='text', placeholder='Town', value=client.address.town)
     .client-form__item
-      input(name='address[county]', type='text', placeholder='County')
+      input(name='address[county]', type='text', placeholder='County', value=client.address.county)
     .client-form__item
-      input(name='address[postcode]', type='text', placeholder='Postcode')
+      input(name='address[postcode]', type='text', placeholder='Postcode', value=client.address.postcode)
     .client-form__item
       select(name='address[country]')
-        for country in countries
-          if country.code === 'GB'
-            option(value='#{country.code}', selected) #{country.name}
-          else
-            option(value='#{country.code}') #{country.name}
+        if client.address.country
+          //- editing existing clients
+          for country in countries
+            if client.address.country === country.code
+              option(value=country.code, selected) #{country.name}
+            else
+              option(value=country.code) #{country.name}
+
+        else
+          //- add new client
+          for country in countries
+            if country.code === 'GB'
+              option(value=country.code, selected) #{country.name}
+            else
+              option(value=country.code) #{country.name}
 
     h3 Contact information
     .client-form__item
-      input(name='contact[name]', type='text', placeholder='Contact\'s name', required)
+      input(name='contact[name]', type='text', placeholder='Contact\'s name', value=client.contact.name, required)
     .client-form__item
-      input(name='contact[email]', type='email', placeholder='Contact\'s email', required)
+      input(name='contact[email]', type='email', placeholder='Contact\'s email', value=client.contact.email, required)
     .client-form__item
-      input(name='contact[phone]', type='tel', placeholder='Contact\'s phone')
+      input(name='contact[phone]', type='tel', placeholder='Contact\'s phone', value=client.contact.phone)
     .client-form__item.hidden.csrf
       input(type='hidden', name='_csrf', value=csrfToken)
-    .client-form__item.submit
-      button(type='submit') Add new client
 
-mixin clientEdit(client)
-  form.client-form(name='createClient', method='post', action='/clients/#{client._id}')
-    h1 #{client.name}
-    h3 Client information
-    .client-form__item
-      input(name='name', type='text', placeholder='Client name', value='#{client.name}')
-    .client-form__item
-      input(name='company_number', type='text', placeholder='Company number (if applicable)', value='#{client.company_number}')
-    .client-form__item
-      input(name='address[line1]', type='text', placeholder='Address (line 1)', value='#{client.address.line1}')
-    .client-form__item
-      input(name='address[line2]', type='text', placeholder='Address (line 2)', value='#{client.address.line2}')
-    .client-form__item
-      input(name='address[line3]', type='text', placeholder='Address (line 3)', value='#{client.address.line3}')
-    .client-form__item
-      input(name='address[town]', type='text', placeholder='Town', value='#{client.address.town}')
-    .client-form__item
-      input(name='address[county]', type='text', placeholder='County', value='#{client.address.county}')
-    .client-form__item
-      input(name='address[postcode]', type='text', placeholder='Postcode', value='#{client.address.postcode}')
-    .client-form__item
-      select(name='address[country]')
-        for country in countries
-          if country.code === 'GB'
-            option(value='#{country.code}', selected) #{country.name}
-          else
-            option(value='#{country.code}') #{country.name}
-    h3 Contact information
-    .client-form__item
-      input(name='contact[name]', type='text', placeholder='Contact\'s name', value='#{client.contact.name}', required)
-    .client-form__item
-      input(name='contact[email]', type='email', placeholder='Contact\'s email', value='#{client.contact.email}', required)
-    .client-form__item
-      input(name='contact[phone]', type='tel', placeholder='Contact\'s phone', value='#{client.contact.phone}')
-    .client-form__item.hidden.csrf
-      input(type='hidden', name='_csrf', value=csrfToken)
     .client-form__item.submit
-      button(type='submit') Save client
-      button.delete-client(data-client-id='#{client._id}') Delete client
+      if client.isNull
+        button(type='submit') Add new client
+      else
+        button(type='submit') Save client
+        button.delete-client(data-client-id=client._id) Delete client

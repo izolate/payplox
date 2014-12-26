@@ -11,6 +11,6 @@ append body-start
       for client in clients
         +clientList(client)
 
-  +clientAdd()
+  +clientForm()
   - var c = JSON.stringify(clients)
   textarea(style='font-family: monospace') #{c}

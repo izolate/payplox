@@ -4,4 +4,5 @@ include ../components/form/client
 include ../components/clients
 
 append body-start
-  +clientEdit(client)
+  - var form = {name: 'editClient', action: '/clients/'+client._id}
+  +clientForm(form, client)
