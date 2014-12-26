@@ -21,6 +21,11 @@ function login(req, res) {
   });
 }
 
+function logout(req, res) {
+  req.logout();
+  res.redirect('/');
+}
+
 /**
  * Settings
  */
@@ -29,8 +34,10 @@ function settings(req, res) {
 }
 
 function setup(app, passport) {
-  app.get('/login', login);
   app.get('/signup', signup);
+  app.get('/login', login);
+  app.get('/logout', logout);
+
   app.get('/settings', help.protect, settings);
 
   app.post('/signup', passport.authenticate('signup', {
