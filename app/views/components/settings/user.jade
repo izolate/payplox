@@ -1,0 +1,11 @@
+h2 Change password
+form(name='changePass', method='post', action='/settings/user')
+  .form__item
+    input(type='password', name='currentPass', placeholder='Current password')
+  .form__item
+    input(type='password', name='newPass', placeholder='New password')
+  .form__item.hidden
+    input(type='hidden', name='_csrf', value=req.csrfToken())
+    input(type='hidden', name='_form', value='changePass')
+  .form__item
+    button(type='submit') Confirm

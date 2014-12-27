@@ -42,6 +42,7 @@ app.use('/assets', express.static(__dirname + '/assets'));
 [
   './routes/main',
   './routes/user',
+  './routes/settings',
   './routes/clients'
 ].forEach(function(routePath) {
   require(routePath)(app, passport);

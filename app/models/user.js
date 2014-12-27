@@ -28,6 +28,16 @@ schema.methods.createHash = function(password) {
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 };
 
+// change password
+schema.methods.changePassword = function(pass, cb) {
+  if ( this.validPassword(pass.current) ) {
+    this.password = this.createHash(pass.new);
+    return this.save(cb);
+  } else {
+    return new Error('invalid password');
+  }
+};
+
 // create model
 var User = mongoose.model('users', schema);
 

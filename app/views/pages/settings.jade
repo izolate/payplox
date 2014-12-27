@@ -1,0 +1,17 @@
+extend ../layout
+
+append body-start
+  h1 Settings
+
+  nav
+    a(href='/settings/user') User
+    br
+    a(href='/settings/address') Address
+    br
+    a(href='/settings/payment') Payment
+
+  h2 #{req.user.email}
+  blockquote #{req.user}
+
+  if page === 'user'
+    include ../components/settings/user

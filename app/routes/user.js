@@ -26,19 +26,10 @@ function logout(req, res) {
   res.redirect('/');
 }
 
-/**
- * Settings
- */
-function settings(req, res) {
-  res.send(req.user);
-}
-
 function setup(app, passport) {
   app.get('/signup', signup);
   app.get('/login', login);
   app.get('/logout', logout);
-
-  app.get('/settings', help.protect, settings);
 
   app.post('/signup', passport.authenticate('signup', {
     successRedirect : '/',
