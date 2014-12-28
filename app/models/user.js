@@ -11,6 +11,13 @@ var schema = mongoose.Schema({
   password: String,
   name: String,
   created_at: {type: Date, default: Date.now},
+  address: [{
+    street: String,
+    town: String,
+    county: String,
+    postcode: String,
+    country: String
+  }],
   clients: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Client'

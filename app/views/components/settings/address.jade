@@ -1,4 +1,8 @@
 h2 Current addresses
+each address in req.user.address
+  ul
+    li #{address.street}
+
 h2 Add new
 form(name='addAddress', method='post', action='/settings/address')
   .form__item
@@ -19,7 +23,6 @@ form(name='addAddress', method='post', action='/settings/address')
 
   .form__item.hidden
     input(type='hidden', name='_csrf', req.csrfToken())
-    input(type='hidden', name='_form', 'changePass')
   .form__item
     button(type='submit') Confirm
   if message
