@@ -11,7 +11,6 @@ form(name='addAddress', method='post', action='/settings/address')
     input(name='address[postcode]', type='text', placeholder='Postcode')
   .form__item
     select(name='address[country]')
-      //- add new client
       for country in countries
         if country.code === 'GB'
           option(country.code, selected) #{country.name}
