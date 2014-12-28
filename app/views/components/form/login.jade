@@ -4,7 +4,7 @@ form(name=form, method='post', action='/#{form}')
   .form__item
     input(type='password', name='password', placeholder='password', required)
   .form__item.hidden
-    input(type='hidden', name='_csrf', value=csrfToken)
+    input(type='hidden', name='_csrf', value=req.csrfToken())
   .form__item
     button(type='submit') #{form}
   if message

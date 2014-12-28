@@ -10,7 +10,9 @@ function settings(req, res) {
  * @method: GET, PUT
  */
 function getUser(req, res) {
-  res.render('pages/settings', { page: 'user' });
+  res.render('pages/settings', {
+    page: 'user', message: req.flash('message')
+  });
 }
 function putUser(req, res, next) {
   var user = User.findOne({ _id: req.user._id }, function(err, user) {
@@ -19,10 +21,13 @@ function putUser(req, res, next) {
     user.changePassword({
       current: req.body.currentPass, new: req.body.newPass
     }, function(err, resp) {
-      if (err)
-        console.log(err);
-      else
-        console.log(resp);
+
+      var message = err ? err.message : 'Success';
+      req.flash('message', message);
+
+      res.render('pages/settings', {
+        page: 'user', message: req.flash('message')
+      });
     });
   });
 }

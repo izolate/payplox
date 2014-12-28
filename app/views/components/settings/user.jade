@@ -9,3 +9,6 @@ form(name='changePass', method='post', action='/settings/user')
     input(type='hidden', name='_form', value='changePass')
   .form__item
     button(type='submit') Confirm
+  if message
+    .form__item
+      p #{message}

@@ -4,7 +4,7 @@ var help = require('app/controllers/helpers');
  * Signup
  */
 function signup(req, res) {
-  res.render('pages/user', {
+  res.render('pages/login', {
     form: 'signup',
     message: req.flash('message')
   });
@@ -14,10 +14,9 @@ function signup(req, res) {
  * Login
  */
 function login(req, res) {
-  res.render('pages/user', {
+  res.render('pages/login', {
     form: 'login',
-    message: req.flash('message'),
-    csrfToken: req.csrfToken()
+    message: req.flash('message')
   });
 }
 
