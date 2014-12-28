@@ -6,15 +6,15 @@ function settings(req, res) {
 }
 
 /**
- * User settings - password/email
+ * Profile settings - password/email
  * @method: GET, PUT
  */
-function getUser(req, res) {
+function getProfile(req, res) {
   res.render('pages/settings', {
-    page: 'user', message: req.flash('message')
+    page: 'profile', message: req.flash('message')
   });
 }
-function putUser(req, res, next) {
+function putProfile(req, res, next) {
   var user = User.findOne({ _id: req.user._id }, function(err, user) {
     if (err) next(err);
 
@@ -26,7 +26,7 @@ function putUser(req, res, next) {
       req.flash('message', message);
 
       res.render('pages/settings', {
-        page: 'user', message: req.flash('message')
+        page: 'profile', message: req.flash('message')
       });
     });
   });
@@ -36,7 +36,7 @@ function setup(app, passport) {
   app.get('/settings', help.protect, settings);
 
   // user
-  app.get('/settings/user', help.protect, getUser);
-  app.post('/settings/user', help.protect, putUser);
+  app.get('/settings/profile', help.protect, getProfile);
+  app.post('/settings/profile', help.protect, putProfile);
 }
 module.exports = setup;

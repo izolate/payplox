@@ -4,7 +4,7 @@ append body-start
   h1 Settings
 
   nav
-    a(href='/settings/user') User
+    a(href='/settings/profile') Profile
     br
     a(href='/settings/address') Address
     br
@@ -13,5 +13,5 @@ append body-start
   h2 #{req.user.email}
   blockquote #{req.user}
 
-  if page === 'user'
-    include ../components/settings/user
+  if page === 'profile'
+    include ../components/settings/profile
