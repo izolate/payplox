@@ -34,7 +34,7 @@ schema.methods.changePassword = function(pass, cb) {
     this.password = this.createHash(pass.new);
     return this.save(cb);
   } else {
-    return cb(new Error('Invalid password'), 'Invalid password'), 'error';
+    return cb(new Error('Invalid password'), null);
   }
 };
 
