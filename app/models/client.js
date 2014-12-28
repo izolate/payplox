@@ -11,7 +11,7 @@ var schema = mongoose.Schema({
   name: { type: String, required: true },
   company_number: String,
   address: {
-    street_address: { type: String, required: true },
+    street: { type: String, required: true },
     town: { type: String, required: true },
     county: { type: String, required: true },
     postcode: { type: String, required: true },
