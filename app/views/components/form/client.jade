@@ -11,11 +11,7 @@ mixin clientForm(form, client)
 
     h3 Address
     .client-form__item
-      input(name='address[line1]', type='text', placeholder='Address (line 1)', value=client.address.line1)
-    .client-form__item
-      input(name='address[line2]', type='text', placeholder='Address (line 2)', value=client.address.line2)
-    .client-form__item
-      input(name='address[line3]', type='text', placeholder='Address (line 3)', value=client.address.line3)
+      input(name='address[street]', type='text', placeholder='Street address', value=client.address.street)
     .client-form__item
       input(name='address[town]', type='text', placeholder='Town', value=client.address.town)
     .client-form__item

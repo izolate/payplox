@@ -1,0 +1,28 @@
+h2 Current addresses
+h2 Add new
+form(name='addAddress', method='post', action='/settings/address')
+  .form__item
+    input(name='address[street]', type='text', placeholder='Street address')
+  .form__item
+    input(name='address[town]', type='text', placeholder='Town')
+  .form__item
+    input(name='address[county]', type='text', placeholder='County')
+  .form__item
+    input(name='address[postcode]', type='text', placeholder='Postcode')
+  .form__item
+    select(name='address[country]')
+      //- add new client
+      for country in countries
+        if country.code === 'GB'
+          option(country.code, selected) #{country.name}
+        else
+          option(country.code) #{country.name}
+
+  .form__item.hidden
+    input(type='hidden', name='_csrf', req.csrfToken())
+    input(type='hidden', name='_form', 'changePass')
+  .form__item
+    button(type='submit') Confirm
+  if message
+    .form__item
+      p #{message}

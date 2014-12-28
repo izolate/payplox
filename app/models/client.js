@@ -11,13 +11,11 @@ var schema = mongoose.Schema({
   name: { type: String, required: true },
   company_number: String,
   address: {
-    line1: { type: String, required: true },
-    line2: String,
-    line3: String,
+    street_address: { type: String, required: true },
     town: { type: String, required: true },
     county: { type: String, required: true },
     postcode: { type: String, required: true },
-    country: { type: String, required: true } // TODO country validator
+    country: { type: String, required: true }
   },
   created_at: {type: Date, default: Date.now},
   contact: {

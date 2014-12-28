@@ -1,5 +1,6 @@
 var help = require('app/controllers/helpers');
 var User = require('app/models/user');
+var countries = require('country-list')();
 
 function settings(req, res) {
   res.render('pages/settings', { page: 'settings' });
@@ -32,11 +33,24 @@ function putProfile(req, res, next) {
   });
 }
 
+/**
+ * Address settings
+ * @method: GET, PUT
+ */
+function getAddress(req, res) {
+  res.render('pages/settings', {
+    page: 'address', countries: countries.getData()
+  });
+}
+
 function setup(app, passport) {
   app.get('/settings', help.protect, settings);
 
-  // user
+  // profile
   app.get('/settings/profile', help.protect, getProfile);
   app.post('/settings/profile', help.protect, putProfile);
+
+  // address
+  app.get('/settings/address', help.protect, getAddress);
 }
 module.exports = setup;
