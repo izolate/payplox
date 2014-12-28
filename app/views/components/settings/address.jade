@@ -22,9 +22,6 @@ form(name='addAddress', method='post', action='/settings/address')
           option(country.code) #{country.name}
 
   .form__item.hidden
-    input(type='hidden', name='_csrf', req.csrfToken())
+    input(type='hidden', name='_csrf', value=req.csrfToken())
   .form__item
     button(type='submit') Confirm
-  if message
-    .form__item
-      p #{message}

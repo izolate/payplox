@@ -43,6 +43,17 @@ function getAddress(req, res) {
   });
 }
 
+function postAddress(req, res, next) {
+  User.update({ _id: req.user._id },
+  { $set: { address: req.body.address }},
+  function(err, user) {
+    if (err) next(err);
+
+    req.flash('message', 'New address added');
+    res.redirect('/settings/address');
+  });
+}
+
 function setup(app, passport) {
   app.get('/settings', help.protect, settings);
 
@@ -52,5 +63,6 @@ function setup(app, passport) {
 
   // address
   app.get('/settings/address', help.protect, getAddress);
+  app.post('/settings/address', help.protect, postAddress);
 }
 module.exports = setup;
