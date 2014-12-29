@@ -62,7 +62,7 @@ function setup(app, passport) {
   app.post('/settings/profile', help.protect, putProfile);
 
   // address
-  app.get('/settings/address', help.protect, getAddress);
-  app.post('/settings/address', help.protect, postAddress);
+  app.get('/settings/profile/address', help.protect, getAddress);
+  app.post('/settings/profile/address', help.protect, postAddress);
 }
 module.exports = setup;

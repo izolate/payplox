@@ -4,7 +4,7 @@ each address in req.user.address
     li #{address}
 
 h2 Add new
-form(name='addAddress', method='post', action='/settings/address')
+form(name='addAddress', method='post', action='/settings/profile/address')
   .form__item
     input(name='address[street]', type='text', placeholder='Street address')
   .form__item
