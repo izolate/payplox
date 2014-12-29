@@ -45,7 +45,7 @@ function getAddress(req, res) {
 
 function postAddress(req, res, next) {
   User.update({ _id: req.user._id },
-  { $set: { address: req.body.address }},
+  { $push: { address: req.body.address }},
   function(err, user) {
     if (err) next(err);
 

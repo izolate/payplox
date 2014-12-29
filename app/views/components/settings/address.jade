@@ -1,18 +1,18 @@
 h2 Current addresses
 each address in req.user.address
   ul
-    li #{address.street}
+    li #{address}
 
 h2 Add new
 form(name='addAddress', method='post', action='/settings/address')
   .form__item
     input(name='address[street]', type='text', placeholder='Street address')
   .form__item
-    input(name='address[town]', type='text', placeholder='Town')
+    input(name='address[town]', type='text', placeholder='Town/City')
   .form__item
-    input(name='address[county]', type='text', placeholder='County')
+    input(name='address[county]', type='text', placeholder='County/State')
   .form__item
-    input(name='address[postcode]', type='text', placeholder='Postcode')
+    input(name='address[postcode]', type='text', placeholder='Postcode/Zip')
   .form__item
     select(name='address[country]')
       for country in countries
