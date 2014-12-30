@@ -1,0 +1,9 @@
+extend ../layout
+
+append body-start
+  h1 Profile
+  h3 #{req.user.email}
+
+  include ../components/profile/address
+
+  blockquote #{req.user}
