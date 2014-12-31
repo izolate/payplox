@@ -3,15 +3,7 @@ extend ../layout
 append body-start
   h1 Settings
 
-  nav
-    a(href='/settings/profile') Profile
-    br
-    a(href='/settings/profile/address') └── Address
-    br
-    a(href='/settings/profile/bank-details') └── Bank details
-
-  h2 #{req.user.email}
+  h3 #{req.user.email}
   blockquote #{req.user}
 
-  if page === 'profile'
-    include ../components/settings/profile
+  include ../components/settings/password

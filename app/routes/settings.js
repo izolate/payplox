@@ -1,21 +1,26 @@
 var help = require('app/controllers/helpers');
 var User = require('app/models/user');
-var countries = require('country-list')();
 
 function settings(req, res) {
-  res.render('pages/settings', { page: 'settings' });
+  res.render('pages/settings');
 }
 
 /**
- * Profile settings - password/email
- * @method: GET, PUT
+ * Settings page
+ * @method: GET
  */
-function getProfile(req, res) {
+function getSettings(req, res) {
   res.render('pages/settings', {
-    page: 'profile', message: req.flash('message')
+    message: req.flash('message')
   });
 }
-function putProfile(req, res, next) {
+
+/**
+ * Change password
+ *  @method: POST
+ *  TODO: make it PUT
+ */
+function changePassword(req, res, next) {
   var user = User.findOne({ _id: req.user._id }, function(err, user) {
     if (err) next(err);
 
@@ -27,42 +32,14 @@ function putProfile(req, res, next) {
       req.flash('message', message);
 
       res.render('pages/settings', {
-        page: 'profile', message: req.flash('message')
+        message: req.flash('message')
       });
     });
   });
 }
 
-/**
- * Address settings
- * @method: GET, PUT
- */
-function getAddress(req, res) {
-  res.render('pages/settings', {
-    page: 'address', countries: countries.getData()
-  });
-}
-
-function postAddress(req, res, next) {
-  User.update({ _id: req.user._id },
-  { $push: { address: req.body.address }},
-  function(err, user) {
-    if (err) next(err);
-
-    req.flash('message', 'New address added');
-    res.redirect('/settings/address');
-  });
-}
-
 function setup(app, passport) {
   app.get('/settings', help.protect, settings);
-
-  // profile
-  app.get('/settings/profile', help.protect, getProfile);
-  app.post('/settings/profile', help.protect, putProfile);
-
-  // address
-  app.get('/settings/profile/address', help.protect, getAddress);
-  app.post('/settings/profile/address', help.protect, postAddress);
+  app.post('/settings/password', help.protect, changePassword);
 }
 module.exports = setup;
