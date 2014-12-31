@@ -35,6 +35,12 @@ schema.methods.createHash = function(password) {
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 };
 
+// change email
+schema.methods.changeEmail = function(email, cb) {
+  this.email = email;
+  return this.save(cb);
+};
+
 // change password
 schema.methods.changePassword = function(pass, cb) {
   if ( this.validPassword(pass.current) ) {
