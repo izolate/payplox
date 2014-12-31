@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var User = require('./user');
 
 // define schema
-var schema = mongoose.Schema({
+var schema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
   company_number: String,

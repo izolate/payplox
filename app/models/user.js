@@ -2,11 +2,12 @@
  * User model
  */
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var Client = require('./client');
 var bCrypt = require('bcrypt-nodejs');
 
 // define schema
-var schema = mongoose.Schema({
+var schema = new Schema({
   email: String,
   password: String,
   name: String,
@@ -19,7 +20,7 @@ var schema = mongoose.Schema({
     country: String
   }],
   clients: [{
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Client'
   }]
 });
@@ -53,6 +54,19 @@ schema.methods.changePassword = function(pass, cb) {
 
 // create model
 var User = mongoose.model('users', schema);
+
+// validate unique email address
+schema.pre('save', function(next, done) {
+  var self = this;
+  this.model('users').find({ email: self.email }, function(err, resp) {
+    if (err) done(err);
+
+    if (!resp.length)
+      next();
+    else
+      done(new Error('Email is already registered'));
+  }).limit(1);
+});
 
 module.exports = User;
 
