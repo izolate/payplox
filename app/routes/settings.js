@@ -23,9 +23,11 @@ function changeEmail(req, res, next) {
   var query = User.findOne({ _id: req.user._id }, function(err, user) {
     if (err) next(err);
 
-    user.changeEmail(req.body.email, function(err, resp) {
-      if (err) res.send(err.message);
-      res.send(resp);
+    user.changeEmail(req.body.email, function(err, user) {
+      if (err)
+        res.send({ error: true, message: err.message });
+      else
+        res.send({ _id: user._id, email: user.email });
     });
   });
 }
@@ -56,7 +58,7 @@ function setup(app, passport) {
   app.get('/settings', help.protect, settings);
 
   // update user
-  app.put('/settings/email', help.protect, changeEmail);
+  app.put('/user/email', help.protect, changeEmail);
   app.post('/settings/password', help.protect, changePassword);
 }
 module.exports = setup;

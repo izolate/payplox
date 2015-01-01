@@ -14,6 +14,7 @@ require('./config')(app);
 var Client = require('./models/client');
 
 // controllers
+require('./controllers/user')(app);
 require('./controllers/client')(app);
 
 // let's go

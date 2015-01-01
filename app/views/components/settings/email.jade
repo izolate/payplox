@@ -1,11 +1,11 @@
 h2 Change email
-form(name='changeEmail', method='post', action='/settings/email')
+form.change-email(name='changeEmail', method='put', action='/settings/email')
   .form__item
     input(type='email', name='email', placeholder='Email', value=req.user.email)
-  .form__item.hidden
+  .form__item.hidden.csrf
     input(type='hidden', name='_csrf', value=req.csrfToken())
   .form__item
-    button(type='submit') Confirm
+    button(type='submit', data-user-id=req.user._id) Confirm
   if message
     .form__item
       p #{message}
