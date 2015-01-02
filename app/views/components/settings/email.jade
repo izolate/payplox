@@ -1,5 +1,5 @@
 h2 Change email
-form.change-email(name='changeEmail', method='put', action='/settings/email')
+form(name='updateEmail', method='put', action='/settings/email')
   .form__item
     input(type='email', name='email', placeholder='Email', value=req.user.email)
   .form__item.hidden.csrf

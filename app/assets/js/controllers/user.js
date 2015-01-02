@@ -12,8 +12,8 @@ function userController(app) {
   // localized element cache
   var el = app.$el.user = {
     form: {
-      pw: $('form.change-password'),
-      email: $('form.change-email')
+      pw: $('form[name="updatePassword"]'),
+      email: $('form[name="updateEmail"]')
     }
   };
 
@@ -21,7 +21,7 @@ function userController(app) {
   el.form.email.on('submit', function(e) {
     e.preventDefault();
 
-    app.user.changeEmail({
+    app.user.updateEmail({
       email: el.form.email.find('input[name="email"]').val(),
       _csrf: el.form.email.find('.csrf input').val()
     }, function(resp) {
@@ -35,7 +35,7 @@ function userController(app) {
   el.form.pw.on('submit', function(e) {
     e.preventDefault();
 
-    app.user.changePassword({
+    app.user.updatePassword({
       currentPass: el.form.pw.find('input[name="currentPass"]').val(),
       newPass: el.form.pw.find('input[name="newPass"]').val(),
       _csrf: el.form.pw.find('.csrf input').val()

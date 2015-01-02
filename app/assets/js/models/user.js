@@ -18,10 +18,10 @@ User.prototype.sendRequest = function(config) {
 };
 
 /**
- * Change email address
+ * Update email address
  * @method: PUT
  */
-User.prototype.changeEmail = function(data, callback) {
+User.prototype.updateEmail = function(data, callback) {
   this.sendRequest({
     method: 'put',
     url: '/user/email',
@@ -31,10 +31,10 @@ User.prototype.changeEmail = function(data, callback) {
 };
 
 /**
- * Change password
+ * Update password
  * @method: PUT
  */
-User.prototype.changePassword = function(data, callback) {
+User.prototype.updatePassword = function(data, callback) {
   this.sendRequest({
     method: 'put',
     url: '/user/password',
