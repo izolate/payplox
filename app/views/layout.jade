@@ -3,7 +3,9 @@ html(lang='en')
   head
     include components/head
 
-  body
+  body(
+    data-user-id=req.user? req.user._id.toString(): undefined
+  )
     include components/nav/main-nav
     block body-start
     block body-end

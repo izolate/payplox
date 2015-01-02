@@ -36,14 +36,14 @@ schema.methods.createHash = function(password) {
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 };
 
-// change email
-schema.methods.changeEmail = function(email, cb) {
+// update email
+schema.methods.updateEmail = function(email, cb) {
   this.email = email;
   return this.save(cb);
 };
 
-// change password
-schema.methods.changePassword = function(pass, cb) {
+// update password
+schema.methods.updatePassword = function(pass, cb) {
   if ( this.validPassword(pass.current) ) {
     this.password = this.createHash(pass.new);
     return this.save(cb);
@@ -61,7 +61,8 @@ schema.pre('save', function(next, done) {
   this.model('users').find({ email: self.email }, function(err, resp) {
     if (err) done(err);
 
-    if (!resp.length)
+    // success: if email is unregistered, or queried self document
+    if (!resp.length || resp[0]._id.equals(self._id) )
       next();
     else
       done(new Error('Email is already registered'));
@@ -69,4 +70,3 @@ schema.pre('save', function(next, done) {
 });
 
 module.exports = User;
-

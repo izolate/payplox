@@ -2,24 +2,45 @@ var User = require('../models/user');
 
 function userController(app) {
 
+  // create user object
+  app.events.on('domready', function() {
+    var userId = $('body').data('user-id');
+    if (userId)
+      app.user = new User(userId);
+  });
+
+  // localized element cache
   var el = app.$el.user = {
     form: {
-      changeEmail: $('form.change-email')
+      pw: $('form.change-password'),
+      email: $('form.change-email')
     }
   };
 
   // update email address
-  el.form.changeEmail.on('click', 'button[type="submit"]', function(e) {
+  el.form.email.on('submit', function(e) {
     e.preventDefault();
 
-    var user = new User( $(this).data('user-id') );
-    var newEmail = el.form.changeEmail.find('input[name="email"]').val();
-    var csrfToken = el.form.changeEmail.find('.csrf input').val();
-    var data = { email: newEmail, _csrf: csrfToken };
-
-    user.changeEmail(data, function(resp) {
+    app.user.changeEmail({
+      email: el.form.email.find('input[name="email"]').val(),
+      _csrf: el.form.email.find('.csrf input').val()
+    }, function(resp) {
       // if (resp.error)
       // TODO show update
+      console.log(resp);
+    });
+  });
+
+  // update password
+  el.form.pw.on('submit', function(e) {
+    e.preventDefault();
+
+    app.user.changePassword({
+      currentPass: el.form.pw.find('input[name="currentPass"]').val(),
+      newPass: el.form.pw.find('input[name="newPass"]').val(),
+      _csrf: el.form.pw.find('.csrf input').val()
+    }, function(resp) {
+      // TODO handle it
       console.log(resp);
     });
   });

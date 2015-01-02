@@ -33,14 +33,14 @@ function logout(req, res) {
 }
 
 /**
- * Change email address
+ * Update email address
  *  @method: PUT
  */
 function updateEmail(req, res, next) {
   var query = User.findOne({ _id: req.user._id }, function(err, user) {
     if (err) next(err);
 
-    user.changeEmail(req.body.email, function(err, user) {
+    user.updateEmail(req.body.email, function(err, user) {
       if (err)
         res.send({ error: true, message: err.message });
       else
@@ -50,23 +50,19 @@ function updateEmail(req, res, next) {
 }
 
 /**
- * Change password
+ * Update password
  *  @method: PUT
  */
 function updatePassword(req, res, next) {
   var user = User.findOne({ _id: req.user._id }, function(err, user) {
     if (err) next(err);
 
-    user.changePassword({
+    user.updatePassword({
       current: req.body.currentPass, new: req.body.newPass
     }, function(err, resp) {
 
-      var message = err ? err.message : 'Success';
-      req.flash('message', message);
-
-      res.render('pages/settings', {
-        message: req.flash('message')
-      });
+      if (err) throw err;
+      res.send('Password changed');
     });
   });
 }
