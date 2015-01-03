@@ -3,8 +3,8 @@ each address in req.user.address
   ul
     li #{address}
 
-h2 Add new
-form(name='addAddress', method='post', action='/user/address')
+h2 Add new address
+form(name='updateAddress', method='put', action='/user/address')
   .form__item
     input(name='address[street]', type='text', placeholder='Street address')
   .form__item

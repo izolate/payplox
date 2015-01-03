@@ -43,4 +43,17 @@ User.prototype.updatePassword = function(data, callback) {
   });
 };
 
+/**
+ * Update address
+ * @method: PUT
+ */
+User.prototype.updateAddress = function(data, callback) {
+  this.sendRequest({
+    method: 'put',
+    url: '/user/address',
+    data: data,
+    callback: callback
+  });
+};
+
 module.exports = User;

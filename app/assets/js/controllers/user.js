@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var serialize = require('form-serialize');
 
 function userController(app) {
 
@@ -13,7 +14,8 @@ function userController(app) {
   var el = app.$el.user = {
     form: {
       pw: $('form[name="updatePassword"]'),
-      email: $('form[name="updateEmail"]')
+      email: $('form[name="updateEmail"]'),
+      address: $('form[name="updateAddress"]')
     }
   };
 
@@ -40,6 +42,17 @@ function userController(app) {
       newPass: el.form.pw.find('input[name="newPass"]').val(),
       _csrf: el.form.pw.find('.csrf input').val()
     }, function(resp) {
+      // TODO handle it
+      console.log(resp);
+    });
+  });
+
+  // update address
+  el.form.address.on('submit', function(e) {
+    e.preventDefault();
+
+    var address = serialize(this, { hash: true});
+    app.user.updateAddress(address, function(resp) {
       // TODO handle it
       console.log(resp);
     });
