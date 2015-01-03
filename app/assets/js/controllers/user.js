@@ -62,10 +62,11 @@ function userController(app) {
   // delete address
   el.delAddress.on('click', function() {
     var $this = $(this);
-    app.user.deleteAddress([
-      $this.data('address-id'),
-      { _csrf: $this.data('csrf-token') }
-    ], function(resp) {
+
+    app.user.deleteAddress(
+    $this.data('address-id'),
+    { _csrf: $this.data('csrf-token') },
+    function(resp) {
       console.log(resp);
     });
   });

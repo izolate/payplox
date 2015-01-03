@@ -60,11 +60,11 @@ User.prototype.updateAddress = function(data, callback) {
  * Delete address
  * @method: DELETE
  */
-User.prototype.deleteAddress = function(data, callback) {
+User.prototype.deleteAddress = function(id, data, callback) {
   this.sendRequest({
     method: 'delete',
-    url: '/user/address/'+data[0],
-    data: data[1],
+    url: '/user/address/'+id,
+    data: data,
     callback: callback
   });
 };
