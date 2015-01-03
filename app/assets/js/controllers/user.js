@@ -16,7 +16,8 @@ function userController(app) {
       pw: $('form[name="updatePassword"]'),
       email: $('form[name="updateEmail"]'),
       address: $('form[name="updateAddress"]')
-    }
+    },
+    delAddress: $('.delete-address')
   };
 
   // update email address
@@ -54,6 +55,17 @@ function userController(app) {
     var address = serialize(this, { hash: true});
     app.user.updateAddress(address, function(resp) {
       // TODO handle it
+      console.log(resp);
+    });
+  });
+
+  // delete address
+  el.delAddress.on('click', function() {
+    var $this = $(this);
+    app.user.deleteAddress([
+      $this.data('address-id'),
+      { _csrf: $this.data('csrf-token') }
+    ], function(resp) {
       console.log(resp);
     });
   });

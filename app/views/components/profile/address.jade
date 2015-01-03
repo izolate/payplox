@@ -1,7 +1,11 @@
+- var csrfToken = req.csrfToken()
+
 h2 Current addresses
-each address in req.user.address
-  ul
-    li #{address}
+ul
+  each address in req.user.address
+    li
+      p #{address}
+      a.delete-address(data-address-id='#{address._id}', data-csrf-token=csrfToken) delete
 
 h2 Add new address
 form(name='updateAddress', method='put', action='/user/address')
@@ -22,6 +26,6 @@ form(name='updateAddress', method='put', action='/user/address')
           option(country.code) #{country.name}
 
   .form__item.hidden
-    input(type='hidden', name='_csrf', value=req.csrfToken())
+    input(type='hidden', name='_csrf', value=csrfToken)
   .form__item
     button(type='submit') Confirm

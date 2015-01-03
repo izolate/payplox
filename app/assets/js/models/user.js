@@ -56,4 +56,17 @@ User.prototype.updateAddress = function(data, callback) {
   });
 };
 
+/**
+ * Delete address
+ * @method: DELETE
+ */
+User.prototype.deleteAddress = function(data, callback) {
+  this.sendRequest({
+    method: 'delete',
+    url: '/user/address/'+data[0],
+    data: data[1],
+    callback: callback
+  });
+};
+
 module.exports = User;

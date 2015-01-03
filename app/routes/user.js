@@ -73,11 +73,24 @@ function updatePassword(req, res, next) {
  */
 function updateAddress(req, res, next) {
   User.update({ _id: req.user._id },
-  { $push: { address: req.body.address }},
-  function(err, user) {
+    { $push: { address: req.body.address }},
+    function(err, user) {
+      if (err) throw err;
+      res.send('New address added');
+  });
+}
 
-    if (err) throw err;
-    res.send('New address added');
+/**
+ * Delete user address
+ * @method: DELETE
+ */
+function deleteAddress(req, res, next) {
+  User.update({ _id: req.user._id },
+    { $pull: { address: { _id: req.params.id }}},
+    function(err, user) {
+      if (err) throw err;
+      console.log(user);
+      res.send('Address deleted');
   });
 }
 
@@ -104,6 +117,9 @@ function setup(app, passport) {
   app.put('/user/email', help.protect, updateEmail);
   app.put('/user/password', help.protect, updatePassword);
   app.put('/user/address', help.protect, updateAddress);
+
+  // delete
+  app.delete('/user/address/:id', help.protect, deleteAddress);
 }
 
 module.exports = setup;
