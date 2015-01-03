@@ -6,6 +6,7 @@ html(lang='en')
   body(
     data-user-id=req.user? req.user._id.toString(): undefined
   )
+    include components/main-header
     include components/nav/main-nav
     block body-start
     block body-end
