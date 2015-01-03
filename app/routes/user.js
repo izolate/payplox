@@ -67,6 +67,20 @@ function updatePassword(req, res, next) {
   });
 }
 
+/**
+ * Update user addresses
+ * @method: PUT
+ */
+function updateAddress(req, res, next) {
+  User.update({ _id: req.user._id },
+  { $push: { address: req.body.address }},
+  function(err, user) {
+
+    if (err) throw err;
+    res.send('New address added');
+  });
+}
+
 function setup(app, passport) {
   // create
   app.post('/signup', passport.authenticate('signup', {
@@ -87,8 +101,9 @@ function setup(app, passport) {
   app.get('/logout', logout);
 
   // update
-  app.put('/user/email', updateEmail);
-  app.put('/user/password', updatePassword);
+  app.put('/user/email', help.protect, updateEmail);
+  app.put('/user/password', help.protect, updatePassword);
+  app.put('/user/address', help.protect, updateAddress);
 }
 
 module.exports = setup;

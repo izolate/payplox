@@ -4,15 +4,15 @@ each address in req.user.address
     li #{address}
 
 h2 Add new
-form(name='addAddress', method='post', action='/settings/profile/address')
+form(name='addAddress', method='post', action='/user/address')
   .form__item
     input(name='address[street]', type='text', placeholder='Street address')
   .form__item
-    input(name='address[town]', type='text', placeholder='Town/City')
+    input(name='address[town]', type='text', placeholder='Town / City')
   .form__item
-    input(name='address[county]', type='text', placeholder='County/State')
+    input(name='address[county]', type='text', placeholder='County / State')
   .form__item
-    input(name='address[postcode]', type='text', placeholder='Postcode/Zip')
+    input(name='address[postcode]', type='text', placeholder='Postcode / Zip')
   .form__item
     select(name='address[country]')
       for country in countries
