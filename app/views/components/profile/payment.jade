@@ -1,0 +1,24 @@
+- var csrfToken = req.csrfToken()
+
+h2 Current payment details
+ul
+  each address in req.user.address
+    li
+      p #{address}
+      a.delete-address(data-address-id='#{address._id}', data-csrf-token=csrfToken) delete
+
+h2 Add new payment details
+form(name='updatePayment', method='put', action='/user/payment')
+  fieldset
+    h3 Bank account
+    .form__item
+      input(name='bank[name]', type='text', placeholder='Bank name')
+    .form__item
+      input(name='bank[account]', type='text', placeholder='Account number')
+    .form__item
+      input(name='bank[sort_code]', type='text', placeholder='Sort Code')
+
+  .form__item.hidden
+    input(type='hidden', name='_csrf', value=csrfToken)
+  .form__item
+    button(type='submit') Confirm

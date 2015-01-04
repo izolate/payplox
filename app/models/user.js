@@ -19,6 +19,14 @@ var schema = new Schema({
     postcode: String,
     country: String
   }],
+  payment: [{
+    bank: {
+      name: String,
+      account: String,
+      sort_code: String,
+    },
+    paypal: String
+  }],
   clients: [{
     type: Schema.Types.ObjectId,
     ref: 'Client'
