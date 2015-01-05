@@ -59,7 +59,7 @@ function postClients(req, res, next) {
  * Update an existing client
  * @method: POST
  */
-function putClients(req, res) {
+function updateClient(req, res) {
   var put = Client
     .update({
       '_id': req.params.clientId,
@@ -89,10 +89,14 @@ function deleteClient(req, res, next) {
 }
 
 function setup(app, passport) {
+  // create
+  app.post('/clients', help.protect, postClients);
+  // read
   app.get('/clients', help.protect, getClients);
   app.get('/clients/:clientId', help.protect, getSingleClient);
-  app.post('/clients', help.protect, postClients);
-  app.post('/clients/:clientId', help.protect, putClients);
+  // update
+  app.put('/clients/:clientId', help.protect, updateClient);
+  // delete
   app.delete('/clients/:clientId', help.protect, deleteClient);
 }
 
