@@ -1,21 +1,13 @@
+var Base = require('./base');
 
 function User(id) {
+  Base.call(this); // call super constructor
   this._id = id;
 }
 
-/**
- * Send an AJAX request
- */
-User.prototype.sendRequest = function(config) {
-  $.ajax({
-    type: config.method,
-    url: config.url,
-    data: config.data,
-    success: function(resp) {
-      config.callback(resp);
-    }
-  });
-};
+// extend Base model
+User.prototype = Object.create(Base.prototype);
+User.prototype.constructor = User;
 
 /**
  * Update email address

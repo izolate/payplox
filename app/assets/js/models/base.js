@@ -17,4 +17,4 @@ Base.prototype.sendRequest = function(config) {
   });
 };
 
-module.exports = new Base();
+module.exports = Base;

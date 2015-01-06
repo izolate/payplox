@@ -1,23 +1,26 @@
 var Base = require('./base');
 
-var Client = Object.create(Base);
-
-Client.prototype.init = function(id) {
-  this._id = id;
-};
-
-/*
 function Client(id) {
+  Base.call(this); // call super constructor
   this._id = id;
 }
 
+// extend Base model
+Client.prototype = Object.create(Base.prototype);
+Client.prototype.constructor = Client;
 
-Base.sendRequest.call(Client.prototype);
-
+/**
+ * Update a client record
+ * @method: PUT
+ */
 Client.prototype.update = function(data, callback) {
   console.log(this);
 };
 
+/**
+ * Delete a client
+ * @method: DELETE
+ */
 Client.prototype.destroy = function(data, callback) {
   $.ajax({
     type: 'delete',
@@ -28,9 +31,5 @@ Client.prototype.destroy = function(data, callback) {
     }
   });
 };
-*/
 
-
-console.log(Client);
-
-module.exports = Client.init;
+module.exports = Client;
