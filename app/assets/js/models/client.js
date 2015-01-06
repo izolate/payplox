@@ -13,8 +13,13 @@ Client.prototype.constructor = Client;
  * Update a client record
  * @method: PUT
  */
-Client.prototype.update = function(data, callback) {
-  console.log(this);
+Client.prototype.update = function(id, data, callback) {
+  this.sendRequest({
+    method: 'put',
+    url: '/clients/'+id,
+    data: data,
+    callback: callback
+  });
 };
 
 /**

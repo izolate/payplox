@@ -11,6 +11,7 @@ append body-start
       for client in clients
         +clientList(client)
 
-  +clientForm()
+  form(name='createClient', method='post', action='/clients')
+    +clientForm()
   - var c = JSON.stringify(clients)
   textarea(style='font-family: monospace') #{c}

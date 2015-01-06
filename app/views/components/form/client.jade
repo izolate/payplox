@@ -1,54 +1,53 @@
-mixin clientForm(form, client)
-  - var form = form || {name: 'addClient', action: '/clients'}
-  - var client = client || {isNull: true, address:{}, contact:{}}
+mixin clientForm(client)
+  - var client = client || {address:{}, contact:{}, isNull: true}
+  h3 Client information
+  .client-form__item
+    input(name='name', type='text', placeholder='Client or company name', value=client.name)
+  .client-form__item
+    input(name='company_number', type='text', placeholder='Company number (if applicable)', value=client.company_number)
 
-  form.client-form(name=form.name, method='post', action=form.action)
-    h3 Client information
-    .client-form__item
-      input(name='name', type='text', placeholder='Client or company name', value=client.name)
-    .client-form__item
-      input(name='company_number', type='text', placeholder='Company number (if applicable)', value=client.company_number)
+  h3 Address
+  .client-form__item
+    input(name='address[street]', type='text', placeholder='Street address', value=client.address.street)
+  .client-form__item
+    input(name='address[town]', type='text', placeholder='Town/City', value=client.address.town)
+  .client-form__item
+    input(name='address[county]', type='text', placeholder='County/State', value=client.address.county)
+  .client-form__item
+    input(name='address[postcode]', type='text', placeholder='Postcode/Zip', value=client.address.postcode)
+  .client-form__item
+    select(name='address[country]')
+      if client.address.country
+        //- editing existing clients
+        for country in countries
+          if client.address.country === country.code
+            option(value=country.code, selected) #{country.name}
+          else
+            option(value=country.code) #{country.name}
 
-    h3 Address
-    .client-form__item
-      input(name='address[street]', type='text', placeholder='Street address', value=client.address.street)
-    .client-form__item
-      input(name='address[town]', type='text', placeholder='Town/City', value=client.address.town)
-    .client-form__item
-      input(name='address[county]', type='text', placeholder='County/State', value=client.address.county)
-    .client-form__item
-      input(name='address[postcode]', type='text', placeholder='Postcode/Zip', value=client.address.postcode)
-    .client-form__item
-      select(name='address[country]')
-        if client.address.country
-          //- editing existing clients
-          for country in countries
-            if client.address.country === country.code
-              option(value=country.code, selected) #{country.name}
-            else
-              option(value=country.code) #{country.name}
+      else
+        //- add new client
+        for country in countries
+          if country.code === 'GB'
+            option(value=country.code, selected) #{country.name}
+          else
+            option(value=country.code) #{country.name}
 
-        else
-          //- add new client
-          for country in countries
-            if country.code === 'GB'
-              option(value=country.code, selected) #{country.name}
-            else
-              option(value=country.code) #{country.name}
+  h3 Contact information
+  .client-form__item
+    input(name='contact[name]', type='text', placeholder='Contact\'s name', value=client.contact.name, required)
+  .client-form__item
+    input(name='contact[email]', type='email', placeholder='Contact\'s email', value=client.contact.email, required)
+  .client-form__item
+    input(name='contact[phone]', type='tel', placeholder='Contact\'s phone', value=client.contact.phone)
+  .client-form__item.hidden.csrf
+    input(type='hidden', name='_csrf', value=req.csrfToken())
 
-    h3 Contact information
-    .client-form__item
-      input(name='contact[name]', type='text', placeholder='Contact\'s name', value=client.contact.name, required)
-    .client-form__item
-      input(name='contact[email]', type='email', placeholder='Contact\'s email', value=client.contact.email, required)
-    .client-form__item
-      input(name='contact[phone]', type='tel', placeholder='Contact\'s phone', value=client.contact.phone)
-    .client-form__item.hidden.csrf
-      input(type='hidden', name='_csrf', value=csrfToken)
-
-    .client-form__item.submit
-      if client.isNull
+  .client-form__item.actions
+    if client.isNull
         button(type='submit') Add new client
       else
-        button(type='submit') Save client
-        button.delete-client(data-client-id='#{client._id}') Delete client
+        button.update-client(data-client-id='#{client._id}', type='submit').
+          Save client
+        button.delete-client(data-client-id='#{client._id}').
+          Delete client

@@ -7,7 +7,7 @@ var countries = require('country-list')();
  * Get all available clients
  * @method: GET
  */
-function getClients(req, res) {
+function readClients(req, res) {
   var query = Client
     .find({ '_user': new ObjectId(req.user._id) })
     .lean()
@@ -15,7 +15,6 @@ function getClients(req, res) {
       if (err) throw err;
       res.render('pages/clients', {
         clients: clients,
-        csrfToken: req.csrfToken(),
         countries: countries.getData()
       });
     });
@@ -25,7 +24,7 @@ function getClients(req, res) {
  * Get a single client
  * @method: GET
  */
-function getSingleClient(req, res) {
+function readClient(req, res) {
   var query = Client
     .findOne({ '_id':req.params.clientId, '_user':req.user._id })
     .lean()
@@ -34,7 +33,6 @@ function getSingleClient(req, res) {
 
       res.render('pages/client', {
         client: resp,
-        csrfToken: req.csrfToken(),
         countries: countries.getData()
       });
     });
@@ -44,7 +42,7 @@ function getSingleClient(req, res) {
  * Create a new client
  * @method: POST
  */
-function postClients(req, res, next) {
+function createClient(req, res, next) {
   var data = req.body;
   data._user = req.user._id;
 
@@ -57,7 +55,7 @@ function postClients(req, res, next) {
 
 /**
  * Update an existing client
- * @method: POST
+ * @method: PUT
  */
 function updateClient(req, res) {
   var put = Client
@@ -66,9 +64,11 @@ function updateClient(req, res) {
       '_user': req.user._id
     },
     req.body, null, function(err, edited, resp) {
-      if (err) throw err;
+      if (err)
+        res.status(500).send(err);
+
       if (edited)
-        res.redirect('/clients');
+        res.send('success');
     });
 }
 
@@ -90,10 +90,10 @@ function deleteClient(req, res, next) {
 
 function setup(app, passport) {
   // create
-  app.post('/clients', help.protect, postClients);
+  app.post('/clients', help.protect, createClient);
   // read
-  app.get('/clients', help.protect, getClients);
-  app.get('/clients/:clientId', help.protect, getSingleClient);
+  app.get('/clients', help.protect, readClients);
+  app.get('/clients/:clientId', help.protect, readClient);
   // update
   app.put('/clients/:clientId', help.protect, updateClient);
   // delete
