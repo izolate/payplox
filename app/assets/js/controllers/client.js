@@ -10,10 +10,7 @@ function clientController(app) {
     }
   };
 
-  /**
-   * Update a client
-   * @method: PUT
-   */
+  // update a client
   el.form.edit.on('submit', function(e) {
     e.preventDefault();
 
@@ -27,10 +24,7 @@ function clientController(app) {
       });
   });
 
-  /**
-   * Delete a client
-   * @method: DELETE
-   */
+  // delete a client
   el.form.edit.on('click', '.delete-client', function(e) {
     e.preventDefault();
 
