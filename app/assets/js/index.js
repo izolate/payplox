@@ -10,9 +10,6 @@ var app = {
 
 require('./config')(app);
 
-// models
-var Client = require('./models/client');
-
 // controllers
 require('./controllers/user')(app);
 require('./controllers/client')(app);
