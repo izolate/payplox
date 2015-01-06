@@ -10,12 +10,13 @@ function clientController(app) {
   el.form.on('click', '.delete-client', function(e) {
     e.preventDefault();
 
-    var client = new Client( $(this).data('client-id') );
-    var csrfToken = el.form.find('.csrf input').val();
+    var id = $(this).data('client-id');
+    var data = { _csrf: el.form.find('.csrf input').val() };
 
-    client.destroy({ _csrf: csrfToken }, function() {
-      window.location.href = '/clients';
-    });
+    var client = new Client(id)
+      .destroy(id, data, function() {
+        window.location.href = '/clients';
+      });
   });
 
 }

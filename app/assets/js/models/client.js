@@ -21,14 +21,12 @@ Client.prototype.update = function(data, callback) {
  * Delete a client
  * @method: DELETE
  */
-Client.prototype.destroy = function(data, callback) {
-  $.ajax({
-    type: 'delete',
-    url: '/clients/'+this._id,
+Client.prototype.destroy = function(id, data, callback) {
+  this.sendRequest({
+    method: 'delete',
+    url: '/clients/'+id,
     data: data,
-    success: function(resp) {
-      callback();
-    }
+    callback: callback
   });
 };
 

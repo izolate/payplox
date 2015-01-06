@@ -51,4 +51,4 @@ mixin clientForm(form, client)
         button(type='submit') Add new client
       else
         button(type='submit') Save client
-        button.delete-client(data-client-id=client._id) Delete client
+        button.delete-client(data-client-id='#{client._id}') Delete client
