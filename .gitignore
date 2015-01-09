@@ -26,6 +26,7 @@ node_modules
 
 # Bower modules
 app/assets/vendor
+app/assets/dist
 
 # Users Environment Variables
 .lock-wscript
