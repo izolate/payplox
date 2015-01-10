@@ -12,6 +12,6 @@ gulp.task('js', function () {
     .bundle()
     .pipe(source('index.js'))
     .pipe(buffer())
-    //.pipe(plugins.uglify())
+    .pipe(plugins.uglify())
     .pipe(gulp.dest(config.dist));
 });
