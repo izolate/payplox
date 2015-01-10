@@ -1,64 +1,47 @@
-var Base = require('./base');
+import Base from './base';
 
-function User(id) {
-  Base.call(this); // call super constructor
-  this._id = id;
+export default class User extends Base {
+  constructor(id) {
+    this._id = id;
+  }
+
+  // update email
+  updateEmail(data, callback) {
+    this.request({
+      method: 'put',
+      url: '/user/email',
+      data: data,
+      callback: callback
+    });
+  }
+
+  // update password
+  updatePassword(data, callback) {
+    this.request({
+      method: 'put',
+      url: '/user/password',
+      data: data,
+      callback: callback
+    });
+  }
+
+  // update address
+  updateAddress(data, callback) {
+    this.request({
+      method: 'put',
+      url: '/user/address',
+      data: data,
+      callback: callback
+    });
+  }
+
+  // delete address
+  deleteAddress(id, data, callback) {
+    this.request({
+      method: 'delete',
+      url: '/user/address/'+id,
+      data: data,
+      callback: callback
+    });
+  }
 }
-
-// extend Base model
-User.prototype = Object.create(Base.prototype);
-User.prototype.constructor = User;
-
-/**
- * Update email address
- * @method: PUT
- */
-User.prototype.updateEmail = function(data, callback) {
-  this.sendRequest({
-    method: 'put',
-    url: '/user/email',
-    data: data,
-    callback: callback
-  });
-};
-
-/**
- * Update password
- * @method: PUT
- */
-User.prototype.updatePassword = function(data, callback) {
-  this.sendRequest({
-    method: 'put',
-    url: '/user/password',
-    data: data,
-    callback: callback
-  });
-};
-
-/**
- * Update address
- * @method: PUT
- */
-User.prototype.updateAddress = function(data, callback) {
-  this.sendRequest({
-    method: 'put',
-    url: '/user/address',
-    data: data,
-    callback: callback
-  });
-};
-
-/**
- * Delete address
- * @method: DELETE
- */
-User.prototype.deleteAddress = function(id, data, callback) {
-  this.sendRequest({
-    method: 'delete',
-    url: '/user/address/'+id,
-    data: data,
-    callback: callback
-  });
-};
-
-module.exports = User;

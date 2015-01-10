@@ -1,22 +1,28 @@
-var Emitter = require('wildemitter');
-var domready = require('domready');
+import config from './config';
+import Emitter from 'wildemitter';
+import domready from 'domready';
+import $ from 'jquery';
 
-window.jQuery = window.$ = require('jquery');
+// controllers
+import userCtrl from './controllers/user';
+import clientCtrl from './controllers/client';
 
-var app = {
+window.jQuery = window.$ = $;
+
+// configuration
+let app = {
   events: new Emitter(),
   $el: {}
 };
 
-require('./config')(app);
+app = config(app);
 
-// controllers
-require('./controllers/user')(app);
-require('./controllers/client')(app);
+// initiate controllers
+userCtrl(app);
+clientCtrl(app);
 
 // let's go
 domready(function() {
   app.events.emit('domready');
   console.info(app.config.name + ' started');
-
 });

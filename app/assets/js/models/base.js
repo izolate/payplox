@@ -1,20 +1,17 @@
 /**
  * base model
  */
-function Base(){}
+export default class Base {
 
-/**
- * Send an AJAX request
- */
-Base.prototype.sendRequest = function(config) {
-  $.ajax({
-    type: config.method,
-    url: config.url,
-    data: config.data,
-    success: function(resp) {
-      config.callback(resp);
-    }
-  });
-};
-
-module.exports = Base;
+  // send an AJAX request
+  request(data) {
+    $.ajax({
+      type: data.method,
+      url: data.url,
+      data: data.data,
+      success: function(resp) {
+        data.callback(resp);
+      }
+    });
+  }
+}

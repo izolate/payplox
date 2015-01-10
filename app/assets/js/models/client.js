@@ -1,38 +1,27 @@
-var Base = require('./base');
+import Base from './base';
 
-function Client(id) {
-  Base.call(this); // call super constructor
-  this._id = id;
+export default class Client extends Base {
+  constructor(id) {
+    this._id = id;
+  }
+
+  // update a client
+  update(id, data, callback) {
+    this.request({
+      method: 'put',
+      url: '/clients/'+id,
+      data: data,
+      callback: callback
+    });
+  }
+
+  // delete a client
+  destroy(id, data, callback) {
+    this.request({
+      method: 'delete',
+      url: '/clients/'+id,
+      data: data,
+      callback: callback
+    });
+  }
 }
-
-// extend Base model
-Client.prototype = Object.create(Base.prototype);
-Client.prototype.constructor = Client;
-
-/**
- * Update a client record
- * @method: PUT
- */
-Client.prototype.update = function(id, data, callback) {
-  this.sendRequest({
-    method: 'put',
-    url: '/clients/'+id,
-    data: data,
-    callback: callback
-  });
-};
-
-/**
- * Delete a client
- * @method: DELETE
- */
-Client.prototype.destroy = function(id, data, callback) {
-  this.sendRequest({
-    method: 'delete',
-    url: '/clients/'+id,
-    data: data,
-    callback: callback
-  });
-};
-
-module.exports = Client;

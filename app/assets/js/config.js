@@ -1,5 +1,6 @@
-module.exports = function(app) {
+export default function config(app) {
   app.config = {};
+  app.config.name = 'payparrot';
 
-  app.config.name = 'payplox';
-};
+  return app;
+}

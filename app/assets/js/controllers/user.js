@@ -1,17 +1,17 @@
-var User = require('../models/user');
-var serialize = require('form-serialize');
+import User from '../models/user';
+import serialize from 'form-serialize';
 
-function userController(app) {
+export default function userCtrl(app) {
 
   // create user object
   app.events.on('domready', function() {
-    var userId = $('body').data('user-id');
+    let userId = $('body').data('user-id');
     if (userId)
       app.user = new User(userId);
   });
 
   // localized element cache
-  var el = app.$el.user = {
+  let el = app.$el.user = {
     form: {
       pw: $('form[name="updatePassword"]'),
       email: $('form[name="updateEmail"]'),
@@ -52,7 +52,7 @@ function userController(app) {
   el.form.address.on('submit', function(e) {
     e.preventDefault();
 
-    var address = serialize(this, { hash: true});
+    let address = serialize(this, { hash: true});
     app.user.updateAddress(address, function(resp) {
       // TODO handle it
       console.log(resp);
@@ -61,10 +61,10 @@ function userController(app) {
 
   // delete address
   el.delAddress.on('click', function() {
-    var $this = $(this);
+    let $elem = $(this);
 
     app.user.deleteAddress(
-    $this.data('address-id'),
+    $elem.data('address-id'),
     { _csrf: $this.data('csrf-token') },
     function(resp) {
       console.log(resp);
@@ -72,6 +72,3 @@ function userController(app) {
   });
 
 }
-
-module.exports = userController;
-
