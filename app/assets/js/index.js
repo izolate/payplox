@@ -15,7 +15,7 @@ let app = {
   $el: {}
 };
 
-app = config(app);
+config(app);
 
 // initiate controllers
 userCtrl(app);

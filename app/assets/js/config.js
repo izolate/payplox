@@ -1,6 +1,6 @@
 export default function config(app) {
-  app.config = {};
-  app.config.name = 'payparrot';
+  let conf = app.config = {};
 
-  return app;
+  conf.name = 'payparrot';
+  conf.author = 'izolate';
 }
