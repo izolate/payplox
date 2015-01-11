@@ -94,6 +94,20 @@ function deleteAddress(req, res, next) {
   });
 }
 
+/**
+ * Update user payment details
+ * @method: PUT
+ */
+function updatePayment(req, res, next) {
+  User.update({ _id: req.user._id },
+    { $push: { payment: req.body.payment }},
+    function(err, user) {
+      if (err) throw err;
+      console.log(user);
+      res.send('Payment details added');
+  });
+}
+
 function setup(app, passport) {
   // create
   app.post('/signup', passport.authenticate('signup', {
@@ -117,6 +131,7 @@ function setup(app, passport) {
   app.put('/user/email', help.protect, updateEmail);
   app.put('/user/password', help.protect, updatePassword);
   app.put('/user/address', help.protect, updateAddress);
+  app.put('/user/payment', help.protect, updatePayment);
 
   // delete
   app.delete('/user/address/:id', help.protect, deleteAddress);

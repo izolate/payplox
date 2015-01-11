@@ -9,14 +9,19 @@ ul
 
 h2 Add new payment details
 form(name='updatePayment', method='put', action='/user/payment')
-  fieldset
+  .form__item.form__group
     h3 Bank account
-    .form__item
-      input(name='bank[name]', type='text', placeholder='Bank name')
-    .form__item
-      input(name='bank[account]', type='text', placeholder='Account number')
-    .form__item
-      input(name='bank[sort_code]', type='text', placeholder='Sort Code')
+    .form__group__item
+      input(name='payment[bank][name]', type='text', placeholder='Bank name')
+    .form__group__item
+      input(name='payment[bank][account]', type='text', placeholder='Account number')
+    .form__group__item
+      input(name='payment[bank][sort_code]', type='text', placeholder='Sort Code')
+
+  .form__item.form__group
+    h3 Paypal
+    .form__group__item
+      input(name='payment[paypal]', type='email', placeholder='PayPal')
 
   .form__item.hidden
     input(type='hidden', name='_csrf', value=csrfToken)

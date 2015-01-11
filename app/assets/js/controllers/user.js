@@ -15,7 +15,8 @@ export default function userCtrl(app) {
     form: {
       pw: $('form[name="updatePassword"]'),
       email: $('form[name="updateEmail"]'),
-      address: $('form[name="updateAddress"]')
+      address: $('form[name="updateAddress"]'),
+      payment: $('form[name="updatePayment"]')
     },
     delAddress: $('.delete-address')
   };
@@ -69,6 +70,20 @@ export default function userCtrl(app) {
     function(resp) {
       console.log(resp);
     });
+  });
+
+  // update payment
+  el.form.payment.on('submit', function(e) {
+    e.preventDefault();
+
+    let data = serialize(this, { hash: true });
+
+    console.log(data);
+    app.user.updatePayment(data, function(resp) {
+      // TODO handle it
+      console.log(resp);
+    });
+
   });
 
 }

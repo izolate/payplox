@@ -44,4 +44,14 @@ export default class User extends Base {
       callback: callback
     });
   }
+
+  // update payment details
+  updatePayment(data, callback) {
+    this.request({
+      method: 'put',
+      url: '/user/payment',
+      data: data,
+      callback: callback
+    });
+  }
 }
