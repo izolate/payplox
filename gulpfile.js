@@ -5,7 +5,7 @@ var requireDir = require('require-dir');
 requireDir('./gulp/tasks', { recurse: true });
 
 // development task
-gulp.task('develop', ['js', 'css', 'watch']);
+gulp.task('develop', ['js-dev', 'css', 'watch']);
 
 // build task
-gulp.task('build', ['js', 'css']);
+gulp.task('build', ['js-prd', 'css']);

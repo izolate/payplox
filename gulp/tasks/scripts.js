@@ -6,7 +6,20 @@ var to5ify = require('6to5ify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
-gulp.task('js', function () {
+// dev: source maps, debug
+gulp.task('js-dev', function () {
+  return browserify(config.mainjs, { debug: true })
+    .transform(to5ify.configure({
+      sourceMaps: true
+    }))
+    .bundle()
+    .pipe(source('index.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest(config.dist));
+});
+
+// prd: uglified
+gulp.task('js-prd', function () {
   return browserify(config.mainjs)
     .transform(to5ify)
     .bundle()
