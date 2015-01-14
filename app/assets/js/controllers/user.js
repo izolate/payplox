@@ -78,7 +78,6 @@ export default function userCtrl(app) {
 
     let data = serialize(this, { hash: true });
 
-    console.log(data);
     app.user.updatePayment(data, function(resp) {
       // TODO handle it
       console.log(resp);
