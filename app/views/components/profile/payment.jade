@@ -2,10 +2,10 @@
 
 h2 Current payment details
 ul
-  each address in req.user.address
+  each payment in req.user.payment
     li
-      p #{address}
-      a.delete-address(data-address-id='#{address._id}', data-csrf-token=csrfToken) delete
+      p #{payment}
+      a.delete-address(data-address-id='#{payment._id}', data-csrf-token=csrfToken) delete
 
 h2 Add new payment details
 form(name='updatePayment', method='put', action='/user/payment')
