@@ -108,6 +108,21 @@ function updatePayment(req, res, next) {
   });
 }
 
+/**
+ * Delete user payment
+ * @method: DELETE
+ */
+function deletePayment(req, res, next) {
+  User.update({ _id: req.user._id },
+    { $pull: { payment: { _id: req.params.id }}},
+    function(err, user) {
+      if (err)
+        res.status(500).end();
+      else
+        res.send('Address deleted');
+  });
+}
+
 function setup(app, passport) {
   // create
   app.post('/signup', passport.authenticate('signup', {
@@ -135,6 +150,7 @@ function setup(app, passport) {
 
   // delete
   app.delete('/user/address/:id', help.protect, deleteAddress);
+  app.delete('/user/payment/:id', help.protect, deletePayment);
 }
 
 module.exports = setup;

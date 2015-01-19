@@ -18,7 +18,8 @@ export default function userCtrl(app) {
       address: $('form[name="updateAddress"]'),
       payment: $('form[name="updatePayment"]')
     },
-    delAddress: $('.delete-address')
+    delAddress: $('.delete-address'),
+    delPayment: $('.delete-payment')
   };
 
   // update email address
@@ -66,7 +67,7 @@ export default function userCtrl(app) {
 
     app.user.deleteAddress(
     $elem.data('address-id'),
-    { _csrf: $this.data('csrf-token') },
+    { _csrf: $elem.data('csrf-token') },
     function(resp) {
       console.log(resp);
     });
@@ -82,7 +83,17 @@ export default function userCtrl(app) {
       // TODO handle it
       console.log(resp);
     });
+  });
 
+  // delete a payment
+  el.delPayment.on('click', function() {
+    let $elem = $(this);
+
+    app.user.deletePayment($elem.data('payment-id'),
+      { _csrf: $elem.data('csrf-token') },
+      function(resp) {
+        console.log(resp);
+    });
   });
 
 }

@@ -54,4 +54,13 @@ export default class User extends Base {
       callback: callback
     });
   }
+
+  // delete payment details
+  deletePayment(id, data, callback) {
+    this.request({
+      method: 'delete',
+      url: '/user/payment/'+id,
+      callback: callback
+    });
+  }
 }
