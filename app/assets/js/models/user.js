@@ -60,6 +60,7 @@ export default class User extends Base {
     this.request({
       method: 'delete',
       url: '/user/payment/'+id,
+      data: data,
       callback: callback
     });
   }

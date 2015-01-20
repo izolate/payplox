@@ -88,11 +88,11 @@ export default function userCtrl(app) {
   // delete a payment
   el.delPayment.on('click', function() {
     let $elem = $(this);
+    let id = $elem.data('payment-id');
+    let data = { _csrf: $elem.data('csrf-token') };
 
-    app.user.deletePayment($elem.data('payment-id'),
-      { _csrf: $elem.data('csrf-token') },
-      function(resp) {
-        console.log(resp);
+    app.user.deletePayment(id, data, function(resp) {
+      console.log(resp);
     });
   });
 

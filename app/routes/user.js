@@ -41,8 +41,7 @@ function updateEmail(req, res, next) {
     if (err) next(err);
 
     user.updateEmail(req.body.email, function(err, user) {
-      if (err)
-        res.send({ error: true, message: err.message });
+      if (err) res.send(500);
       else
         res.send({ _id: user._id, email: user.email });
     });
@@ -60,9 +59,8 @@ function updatePassword(req, res, next) {
     user.updatePassword({
       current: req.body.currentPass, new: req.body.newPass
     }, function(err, resp) {
-
-      if (err) throw err;
-      res.send('Password changed');
+      if (err) res.send(500);
+      else res.send('Password changed');
     });
   });
 }
@@ -75,8 +73,8 @@ function updateAddress(req, res, next) {
   User.update({ _id: req.user._id },
     { $push: { address: req.body.address }},
     function(err, user) {
-      if (err) throw err;
-      res.send('New address added');
+      if (err) res.send(500);
+      else res.send('New address added');
   });
 }
 
@@ -88,9 +86,8 @@ function deleteAddress(req, res, next) {
   User.update({ _id: req.user._id },
     { $pull: { address: { _id: req.params.id }}},
     function(err, user) {
-      if (err) throw err;
-      console.log(user);
-      res.send('Address deleted');
+      if (err) res.send(500);
+      else res.send('Address deleted');
   });
 }
 
@@ -102,9 +99,8 @@ function updatePayment(req, res, next) {
   User.update({ _id: req.user._id },
     { $push: { payment: req.body.payment }},
     function(err, user) {
-      if (err) throw err;
-      console.log(user);
-      res.send('Payment details added');
+      if (err) res.send(500);
+      else res.send('Payment details added');
   });
 }
 
@@ -116,10 +112,8 @@ function deletePayment(req, res, next) {
   User.update({ _id: req.user._id },
     { $pull: { payment: { _id: req.params.id }}},
     function(err, user) {
-      if (err)
-        res.status(500).end();
-      else
-        res.send('Address deleted');
+      if (err) res.send(500);
+      else res.send('Payment deleted');
   });
 }
 
