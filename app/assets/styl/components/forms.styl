@@ -18,19 +18,26 @@ form
   input[type=password], input[type=search],
   input[type=date], input[type=url],
   input[type=file], textarea
-    width 100%
     -webkit-appearance none
-    font-size $font-base
-    line-height inherit
-
-    &:focus
-      outline none
+    -moz-appearance none
+    appearance none
 
   input[type=text], input[type=email],
   input[type=password], input[type=search],
   input[type=date], input[type=url],
   input[type=file], textarea, select,
   input[type=checkbox], input[type=radio]
+    height 40px
+    padding 6px 10px
+    font-size $font-base
+    line-height inherit
+    background-color white
+    border 1px solid #bbb
+    border-radius 4px
+
+    &:focus
+      outline none
+      border-color $color--blue
 
     &:disabled
       cursor not-allowed
