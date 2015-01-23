@@ -1,6 +1,6 @@
-var Client = require('app/models/client');
+var Client = require('../models/client');
+var help = require('../controllers/helpers');
 var ObjectId = require('mongoose').Types.ObjectId;
-var help = require('app/controllers/helpers');
 var countries = require('country-list')();
 
 /**

@@ -1,5 +1,5 @@
-var help = require('app/controllers/helpers');
-var User = require('app/models/user');
+var help = require('../controllers/helpers');
+var User = require('../models/user');
 var countries = require('country-list')();
 
 /**
