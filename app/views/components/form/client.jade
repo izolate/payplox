@@ -10,11 +10,11 @@ mixin clientForm(client)
   .client-form__item
     input(name='address[street]', type='text', placeholder='Street address', value=client.address.street)
   .client-form__item
-    input(name='address[town]', type='text', placeholder='Town/City', value=client.address.town)
+    input(name='address[town]', type='text', placeholder='Town or City', value=client.address.town)
   .client-form__item
-    input(name='address[county]', type='text', placeholder='County/State', value=client.address.county)
+    input(name='address[county]', type='text', placeholder='Region or State', value=client.address.county)
   .client-form__item
-    input(name='address[postcode]', type='text', placeholder='Postcode/Zip', value=client.address.postcode)
+    input(name='address[postcode]', type='text', placeholder='Postcode or Zip', value=client.address.postcode)
   .client-form__item
     select(name='address[country]')
       if client.address.country

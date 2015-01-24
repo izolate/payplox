@@ -38,7 +38,7 @@ module.exports = function(passport) {
 
       // fail! user exists, but incorrect password
       if (!user.validPassword(password)){
-        return done(null, false, req.flash('message', 'Invalid Password'));
+        return done(null, false, req.flash('message', 'Incorrect password'));
       }
 
        // success! user exists & password is correct
@@ -65,7 +65,7 @@ module.exports = function(passport) {
 
         if (user) {
           // fail! user already exists
-          return done(null, false, req.flash('message', 'User already exists'));
+          return done(null, false, req.flash('message', 'User already exists. Try a different email.'));
         } else {
           // success! create new user
           var newUser = new User();
