@@ -7,7 +7,7 @@ function dashboard(req, res, next) {
 }
 
 function setup(app, passport) {
-  app.get('/', dashboard);
-  app.get('/home', home);
+  app.get('/overview', dashboard);
+  app.get('/', home);
 }
 module.exports = setup;
