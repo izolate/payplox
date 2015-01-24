@@ -1,9 +1,9 @@
-extend ../layout
+extends ../layout
 
 include ../components/form/client
 include ../components/clients
 
-append body-start
+append body
 
   if clients
     h1 Clients (#{clients.length})

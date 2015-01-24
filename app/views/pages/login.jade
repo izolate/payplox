@@ -1,4 +1,6 @@
-extend ../layout
+extends ../base
 
-append body-start
-  include ../components/form/login.jade
+append body
+  main.login-form
+    img.login-form__logo(src='/assets/img/logo.svg', alt='logo')
+    include ../components/form/login.jade

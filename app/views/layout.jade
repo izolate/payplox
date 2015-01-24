@@ -1,16 +1,5 @@
-doctype html
-html(lang='en')
-  head
-    include components/head
+extends ./base
 
-  body(
-    data-user-id=req.user? req.user._id.toString(): undefined
-  )
-    include components/main-header
-    include components/nav/main-nav
-    block body-start
-    block body-end
-
-  //- SCRIPTS
-  block scripts
-    script(src='/assets/dist/index.js')
+block body
+  include components/main-header
+  include components/nav/main-nav

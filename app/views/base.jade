@@ -1,0 +1,13 @@
+- var userId = req.user? req.user._id.toString(): undefined
+
+doctype html
+html(lang='en')
+  head
+    include components/head
+
+  body(data-user-id=userId)
+    block body
+
+  //- SCRIPTS
+  block scripts
+    script(src='/assets/dist/index.js')

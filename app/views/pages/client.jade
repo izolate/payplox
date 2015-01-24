@@ -1,10 +1,12 @@
-extend ../layout
+extends ../layout
 
 include ../components/form/client
 include ../components/clients
 
-append body-start
+append body
   form(
-    name='editClient', action='/clients/#{client._id}',
-    data-client-id='#{client._id}')
+    name='editClient',
+    action='/clients/#{client._id}',
+    data-client-id='#{client._id}'
+  )
     +clientForm(client)

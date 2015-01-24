@@ -10,7 +10,7 @@ import clientCtrl from './controllers/client';
 window.jQuery = window.$ = $;
 
 // configuration
-let app = {
+let app = window.app = {
   events: new Emitter(),
   $el: {}
 };
