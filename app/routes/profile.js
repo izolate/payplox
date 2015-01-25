@@ -7,6 +7,7 @@ var countries = require('country-list')();
  * @method: GET
  */
 function getProfile(req, res) {
+  res.locals.routeName = 'Configuration';
   res.render('pages/profile', {
     page: 'profile',
     countries: countries.getData(),

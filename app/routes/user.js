@@ -126,7 +126,7 @@ function setup(app, passport) {
   }));
 
   app.post('/login', passport.authenticate('login', {
-    successRedirect : '/overview',
+    successRedirect : '/dashboard',
     failureRedirect : '/login',
     failureFlash : true
   }));
