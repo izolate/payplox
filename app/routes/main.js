@@ -1,7 +1,6 @@
 var help = require('../controllers/helpers.js');
 
 function home(req, res) {
-  res.locals.routeName = 'Home';
   res.render('pages/home');
 }
 
