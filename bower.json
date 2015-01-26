@@ -1,23 +1,25 @@
 {
-  "name": "skeleton",
-  "version": "1.0.0",
-  "homepage": "https://github.com/izolate/skeleton",
+  "name": "payplox",
+  "version": "0.0.0",
+  "homepage": "https://github.com/izolate/payplox",
   "authors": [
     "yosh <yoshtalwar@gmail.com>"
   ],
-  "description": "starter skeleton for a node web app",
   "main": "app/index.js",
+  "moduleType": [
+    "node"
+  ],
   "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "app/assets/vendor",
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "jquery": "~2.1.1",
-    "jquery.serializeJSON": "~2.4.1"
+  "dependencies": {
+    "typicons": "~2.0.7"
   }
 }
