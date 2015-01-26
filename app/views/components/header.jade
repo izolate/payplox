@@ -9,3 +9,10 @@ header.header.site-header
     .site-header__item.site-header__menu
       p.current-route.h3.
         #{routeName}
+
+  //- logout
+  if req.user
+    .site-header__item.site-header__logout
+      a.button(href='/logout')
+        span.typcn.typcn-user-outline
+        | Logout
