@@ -12,7 +12,7 @@ header.header.site-header
 
   //- logout
   if req.user
-    .site-header__item.site-header__logout
-      a.button(href='/logout')
-        span.typcn.typcn-user-outline
-        | Logout
+    .site-header__item.site-header__create
+      a.button.button--primary(href='/invoices/create')
+        span.typcn.typcn-plus
+        | New invoice
