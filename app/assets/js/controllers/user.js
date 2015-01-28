@@ -1,10 +1,10 @@
 import User from '../models/user';
 import serialize from 'form-serialize';
 
-export default function userCtrl(app) {
+export default (app) => {
 
   // create user object
-  app.events.on('domready', function() {
+  app.events.on('domready', () => {
     let userId = $('body').data('user-id');
     if (userId)
       app.user = new User(userId);

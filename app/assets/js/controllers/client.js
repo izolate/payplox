@@ -1,7 +1,7 @@
 import Client from '../models/client';
 import serialize from 'form-serialize';
 
-export default function clientCtrl(app) {
+export default (app) => {
 
   let el = app.$el.client = {
     form: {
