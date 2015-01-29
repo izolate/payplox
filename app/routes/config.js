@@ -3,19 +3,18 @@ var User = require('../models/user');
 var countries = require('country-list')();
 
 /**
- * Profile settings
+ * Configuration
  * @method: GET
  */
-function getProfile(req, res) {
-  res.locals.routeName = 'Configuration';
-  res.render('pages/profile', {
-    page: 'profile',
+function getConfig(req, res) {
+  res.locals.routeName = 'config';
+  res.render('pages/config', {
     countries: countries.getData(),
     message: req.flash('message')
   });
 }
 
 function setup(app, passport) {
-  app.get('/profile', help.protect, getProfile);
+  app.get('/config', help.protect, getConfig);
 }
 module.exports = setup;

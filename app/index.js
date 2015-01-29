@@ -42,7 +42,7 @@ app.use('/assets', express.static(__dirname + '/assets'));
 [
   './routes/main',
   './routes/user',
-  './routes/profile',
+  './routes/config',
   './routes/settings',
   './routes/clients'
 ].forEach(function(routePath) {
