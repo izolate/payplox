@@ -1,12 +1,12 @@
 mixin clientForm(client)
   - var client = client || {address:{}, contact:{}, isNull: true}
-  h3 Client information
+  h4 Client information
   .client-form__item
     input(name='name', type='text', placeholder='Client or company name', value=client.name)
   .client-form__item
     input(name='company_number', type='text', placeholder='Company number (if applicable)', value=client.company_number)
 
-  h3 Address
+  h4 Address
   .client-form__item
     input(name='address[street]', type='text', placeholder='Street address', value=client.address.street)
   .client-form__item
@@ -33,7 +33,7 @@ mixin clientForm(client)
           else
             option(value=country.code) #{country.name}
 
-  h3 Contact information
+  h4 Contact information
   .client-form__item
     input(name='contact[name]', type='text', placeholder='Contact\'s name', value=client.contact.name, required)
   .client-form__item

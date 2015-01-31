@@ -4,9 +4,33 @@ include ../components/form/client
 include ../components/clients
 
 append main
-  form(
-    name='editClient',
-    action='/clients/#{client._id}',
-    data-client-id='#{client._id}'
-  )
-    +clientForm(client)
+  section.client
+    header.client__item
+      h1.h2 #{client.name}
+      if client.company_number
+        p
+          | Company number: 
+          span #{client.company_number}
+    .client__item.columns
+      .columns__item.columns__item--half
+        h2.h3 Address
+        address
+          span #{client.address.street}
+          span #{client.address.town}
+          span #{client.address.county}
+          span #{client.address.postcode}
+          span #{client.address.country}
+      .columns__item.columns__item--half
+        h2.h3 Contact details
+        p #{client.contact.name}
+        p #{client.contact.email}
+        p #{client.contact.phone}
+
+    .client__item
+      h2.h3 Edit client details
+      form(
+        name='editClient',
+        action='/clients/#{client._id}',
+        data-client-id='#{client._id}'
+      )
+        +clientForm(client)
