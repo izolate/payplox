@@ -1,8 +1,8 @@
 nav.main-nav
   if req.user
-    a.main-nav_item.create.button.button--primary(href='/invoices/create')
-      span.typcn.typcn-edit
-      | Invoice
+    a.main-nav_item.create.button(href='/invoices/create')
+      span.typcn.typcn-plus
+      | New Invoice
     a.main-nav__item(href='/dashboard') Dashboard
     a.main-nav__item(href='/invoices') Invoices
     a.main-nav__item(href='/clients') Clients
