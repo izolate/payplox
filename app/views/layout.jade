@@ -2,7 +2,14 @@ extends ./base
 
 block body
   include components/header
-  include components/nav/main-nav
+
+  if req.user
+    .scaffold
+      aside.scaffold__item
+        include components/nav/main
+        block aside
+      main.scaffold__item
+        block main
 
 block footer
   include components/footer

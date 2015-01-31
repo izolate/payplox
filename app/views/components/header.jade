@@ -3,16 +3,3 @@ header.header.site-header
   //- logo
   a.site-header__item.site-header__logo
     img(src='/assets/img/logo.svg', alt='logo')
-
-  //- nav
-  if req.user && routeName
-    .site-header__item.site-header__menu
-      p.current-route.h3.
-        #{routeName}
-
-  //- logout
-  if req.user
-    .site-header__item.site-header__create
-      a.button.button--primary(href='/invoices/create')
-        span.typcn.typcn-plus
-        | New invoice

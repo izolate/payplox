@@ -1,9 +1,9 @@
 nav.main-nav
-  a.main-nav__item(href='/') Home
-  if !req.user
-    a.main-nav__item(href='/login') Login
-    a.main-nav__item(href='/signup') Signup
-  else
+  if req.user
+    a.main-nav_item.create.button.button--primary(href='/invoices/create')
+      span.typcn.typcn-edit
+      | Invoice
+    a.main-nav__item(href='/dashboard') Dashboard
     a.main-nav__item(href='/invoices') Invoices
     a.main-nav__item(href='/clients') Clients
     a.main-nav__item(href='/config') Configuration
