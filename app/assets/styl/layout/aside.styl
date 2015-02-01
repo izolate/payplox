@@ -1,0 +1,31 @@
+sections = dashboard, invoices, clients, config, settings
+
+aside.scaffold__item
+
+  .aside__logo
+    display block
+    line-height 0
+    margin 0 0 2em
+    img
+      height 55px
+      padding 0 3px
+
+  nav
+    a:not(.button)
+      display block
+      padding 0.25em 0
+      font-size $font-base*0.9
+    .create
+      margin 0 auto 1em
+      .typcn
+        margin-right 0.5em
+        margin-left -0.5em
+
+    // active class to active nav section
+    for section, i in sections
+      &.{section}
+        .{section}
+          color #444
+          font-weight bold
+          text-decoration none
+

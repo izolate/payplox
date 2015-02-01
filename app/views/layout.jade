@@ -1,13 +1,18 @@
 extends ./base
 
 block body
-  include components/header
 
   if req.user
     .scaffold
+
+      //- aside
       aside.scaffold__item
+        a.aside__logo
+          img(src='/assets/img/logo.svg', alt='logo')
         include components/nav/main
         block aside
+
+      //- main
       main.scaffold__item
         block main
 
