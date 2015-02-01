@@ -120,7 +120,7 @@ function deletePayment(req, res, next) {
 function setup(app, passport) {
   // create
   app.post('/signup', passport.authenticate('signup', {
-    successRedirect : '/overview',
+    successRedirect : '/dashboard',
     failureRedirect : '/signup',
     failureFlash : true
   }));
