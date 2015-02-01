@@ -1,10 +1,16 @@
 extends ../layout
 
 append main
-  h1 Profile
-  h3 #{req.user.email}
 
-  include ../components/profile/address
-  include ../components/profile/payment
+  nav.tabs
+    a.tabs__item.active.
+      Services
+    a.tabs__item.
+      Addresses
+    a.tabs__item.
+      Payment details
+
+  include ../components/config/address
+  include ../components/config/payment
 
   blockquote #{req.user}
