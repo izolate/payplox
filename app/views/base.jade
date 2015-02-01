@@ -5,7 +5,7 @@ html(lang='en')
   head
     include components/head
 
-  body(data-user-id=userId)
+  body(data-user-id=userId, class=routeName.join(' '))
     block body
     block footer
 

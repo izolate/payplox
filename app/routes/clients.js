@@ -14,7 +14,6 @@ function readClients(req, res) {
     .exec(function(err, clients) {
       if (err) throw err;
 
-      res.locals.routeName = 'Clients';
       res.render('pages/clients', {
         clients: clients,
         countries: countries.getData()

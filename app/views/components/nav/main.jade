@@ -1,11 +1,11 @@
-nav.main-nav
+nav.main-nav(class=routeName.join(' '))
   if req.user
     a.main-nav_item.create.button(href='/invoices/create')
       span.typcn.typcn-plus
       | New Invoice
-    a.main-nav__item(href='/dashboard') Dashboard
-    a.main-nav__item(href='/invoices') Invoices
-    a.main-nav__item(href='/clients') Clients
-    a.main-nav__item(href='/config') Configuration
-    a.main-nav__item(href='/settings') Settings
+    a.main-nav__item.dashboard(href='/dashboard') Dashboard
+    a.main-nav__item.invoices(href='/invoices') Invoices
+    a.main-nav__item.clients(href='/clients') Clients
+    a.main-nav__item.config(href='/config') Configuration
+    a.main-nav__item.settings(href='/settings') Settings
     a.main-nav__item(href='/logout') Logout

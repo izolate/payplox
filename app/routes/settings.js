@@ -2,7 +2,6 @@ var help = require('../controllers/helpers');
 var User = require('../models/user');
 
 function settings(req, res) {
-  res.locals.routeName = 'Account settings';
   res.render('pages/settings');
 }
 

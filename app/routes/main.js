@@ -5,7 +5,6 @@ function home(req, res) {
 }
 
 function dashboard(req, res, next) {
-  res.locals.routeName = 'Dashboard';
   res.render('pages/dashboard');
 }
 

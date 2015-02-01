@@ -1,3 +1,5 @@
+sections = dashboard, invoices, clients, config, settings
+
 .main-nav
   a:not(.button)
     display block
@@ -8,4 +10,12 @@
     .typcn
       margin-right 0.5em
       margin-left -0.5em
+
+  // active class to active nav section
+  for section, i in sections
+    &.{section}
+      .{section}
+        color #444
+        font-weight bold
+        text-decoration none
 

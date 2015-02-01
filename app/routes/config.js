@@ -7,7 +7,6 @@ var countries = require('country-list')();
  * @method: GET
  */
 function getConfig(req, res) {
-  res.locals.routeName = 'config';
   res.render('pages/config', {
     countries: countries.getData(),
     message: req.flash('message')
