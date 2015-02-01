@@ -22,8 +22,10 @@ append main
           span #{client.address.country}
       .columns__item.columns__item--half
         h2.h3 Contact details
-        p #{client.contact.name}
-        p #{client.contact.email}
+        p
+          strong #{client.contact.name}
+        p
+          a(href='mailto:#{client.contact.email}') #{client.contact.email}
         p #{client.contact.phone}
 
     .client__item.actions
