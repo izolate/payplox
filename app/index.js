@@ -22,7 +22,6 @@ app.use(session({
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// CSRF
 require('./controllers/csrf')(app);
 
 // passport
@@ -39,6 +38,7 @@ app.set('view engine', 'jade');
 app.use('/assets', express.static(__dirname + '/assets'));
 
 // routes ================================================
+require('./controllers/route')(app);
 [
   './routes/main',
   './routes/user',
