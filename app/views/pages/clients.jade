@@ -5,6 +5,13 @@ include ../components/clients
 
 append main
 
+  nav.tabs
+    a.tabs__item.active.
+      Existing clients
+    a.tabs__item
+      span.typcn.typcn-user-add.icon
+      | Add new
+
   if clients
     h1 Clients (#{clients.length})
     ul.client-list
