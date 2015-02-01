@@ -26,6 +26,10 @@ append main
         p #{client.contact.email}
         p #{client.contact.phone}
 
+    .client__item.actions
+      a.button.actions__edit.button--primary Edit client
+      a.button.actions__delete Delete client
+
     .client__item
       h2.h3 Edit client details
       form(
