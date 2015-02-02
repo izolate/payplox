@@ -1,9 +1,8 @@
 extends ../layout
 
 append main
-  h1 Settings
+  h1.h2 Settings
 
-  h3 #{req.user.email}
   blockquote #{req.user}
 
   include ../components/settings/email

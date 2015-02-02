@@ -40,18 +40,16 @@ app.use('/assets', express.static(__dirname + '/assets'));
 // routes ================================================
 require('./controllers/route')(app);
 
-var routes = {
-  configuration: ['/configuration', './routes/configuration'],
-  //settings: ['/settings', require('./routes/settings')]
-};
-for (var key in routes) {
-  app.use(routes[key][0], require(routes[key][1]));
-}
+[
+  ['/configuration', './routes/configuration'],
+  ['/settings', './routes/settings']
+].forEach(function(route) {
+  app.use(route[0], require(route[1]));
+});
 
 [
   './routes/main',
   './routes/user',
-  './routes/settings',
   './routes/clients'
 ].forEach(function(routePath) {
   require(routePath)(app, passport);
