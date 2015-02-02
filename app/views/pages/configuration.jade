@@ -2,12 +2,12 @@ extends ../layout
 
 append main
 
-  nav.tabs
-    a.tabs__item.active.
+  nav.tabs(class='#{routeName[1]}')
+    a.tabs__item.active(href='/configuration/services').
       Services
-    a.tabs__item.
+    a.tabs__item(href='/configuration/addresses').
       Addresses
-    a.tabs__item.
+    a.tabs__item(href='/configuration/payment').
       Payment details
 
   include ../components/configuration/address

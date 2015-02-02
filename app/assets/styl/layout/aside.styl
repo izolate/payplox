@@ -1,4 +1,4 @@
-sections = dashboard, invoices, clients, configuration, settings
+sections = dashboard, invoices, clients, configuration, services, addresses, payment, settings
 
 aside.scaffold__item
 
@@ -10,21 +10,30 @@ aside.scaffold__item
       height 55px
       padding 0 3px
 
-  nav
+  .main-nav
     a:not(.button)
       display block
       padding 0.25em 0
       font-size $font-base*0.9
+      font-weight normal
     .create
       margin 0 auto 1em
       .typcn
         margin-right 0.5em
         margin-left -0.5em
 
+    &__item--submenu
+      display none
+      margin-left 0.25em
+      padding-left 0.75em
+      border-left 2px solid $color--grey-light
+
+
     // active class to active nav section
     for section, i in sections
       &.{section}
         .{section}
+          display block
           color #444
           font-weight bold
           text-decoration none
