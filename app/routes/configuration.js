@@ -27,4 +27,11 @@ router.get('/addresses', function(req, res, next) {
   });
 });
 
+router.get('/payments', function(req, res, next) {
+  res.render('pages/configuration', {
+    countries: countries.getData(),
+    message: req.flash('message')
+  });
+});
+
 module.exports = router;
