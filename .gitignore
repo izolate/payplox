@@ -30,3 +30,6 @@ app/assets/dist
 
 # Users Environment Variables
 .lock-wscript
+
+# Vagrant
+.vagrant
