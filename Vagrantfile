@@ -48,4 +48,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   # end
 
+  # Ansible provisioning
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ansible/dev.yml"
+    ansible.verbose = "vvv"
+    # ansible.skip_tags = "..."
+    # ansible.tags = ["..."]
+  end
+
 end

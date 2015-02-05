@@ -1,0 +1,5 @@
+- hosts: all
+  user: vagrant
+  vars:
+    home_dir: /home/{{ ansible_ssh_user }}
+  roles:
