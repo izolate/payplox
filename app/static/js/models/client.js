@@ -2,7 +2,7 @@ import Base from './base';
 
 export default class Client extends Base {
   constructor(id) {
-    this._id = id;
+    super(id);
   }
 
   // update a client

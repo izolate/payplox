@@ -2,7 +2,7 @@ import Base from './base';
 
 export default class User extends Base {
   constructor(id) {
-    this._id = id;
+    super(id);
   }
 
   // update email

@@ -7,7 +7,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
-var log = require('winston').loggers.get('app:server');
 
 // config ================================================
 app.use(function (req, res, next) {
@@ -35,7 +34,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 // static files
-app.use('/assets', express.static(__dirname + '/assets'));
+app.use('/static', express.static(__dirname + '/static'));
 
 // routes ================================================
 require('./controllers/route')(app);
@@ -57,10 +56,8 @@ require('./controllers/route')(app);
 
 // launch ================================================
 app.listen(config.express.port, config.express.ip, function (error) {
-  if (error) {
-    log.error('Unable to listen for connections', error);
-    process.exit(10);
-  }
-  log.info('app is listening on http://' +
-    config.express.ip + ':' + config.express.port);
+  if (error)
+    console.error(error);
+  else
+    console.log('Payplox listening on localhost: ' + config.express.port);
 });

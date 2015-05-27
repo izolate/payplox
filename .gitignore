@@ -25,8 +25,8 @@ build/Release
 node_modules
 
 # Bower modules
-app/assets/vendor
-app/assets/dist
+app/static/vendor
+app/static/dist
 
 # Users Environment Variables
 .lock-wscript

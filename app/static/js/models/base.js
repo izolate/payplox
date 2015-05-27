@@ -3,6 +3,10 @@
  */
 export default class Base {
 
+  constructor(id) {
+    this.id = id;
+  }
+
   // send an AJAX request
   request(data) {
     $.ajax({

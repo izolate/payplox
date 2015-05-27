@@ -1,21 +1,19 @@
 import config from './config';
-import Emitter from 'wildemitter';
+import events from 'events';
 import domready from 'domready';
-import $ from 'jquery';
 
 // controllers
 import userCtrl from './controllers/user';
 import clientCtrl from './controllers/client';
 
-window.jQuery = window.$ = $;
+// config
+class App extends events.EventEmitter {
+  constructor() {
+    super(); // init
+  }
+}
 
-// configuration
-let app = window.app = {
-  events: new Emitter(),
-  $el: {}
-};
-
-config(app);
+let app = window.app = new App();
 
 // initiate controllers
 userCtrl(app);
