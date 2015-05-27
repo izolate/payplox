@@ -21,6 +21,5 @@ clientCtrl(app);
 
 // let's go
 domready(() => {
-  app.events.emit('domready');
   console.info(app.config.name + ' started');
 });
