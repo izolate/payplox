@@ -12,5 +12,5 @@ npm i
 npm run develop
 
 # start server on port 3000
-npm start
+npm start -- --watch
 ```
