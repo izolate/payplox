@@ -4,7 +4,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Client = require('./client');
-var bCrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcryptjs');
 
 // define schema
 var schema = new Schema({
@@ -36,12 +36,12 @@ var schema = new Schema({
 
 // compares password hash
 schema.methods.validPassword = function(password){
-  return bCrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password);
 };
 
 // Generates hash using bCrypt
 schema.methods.createHash = function(password) {
-  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 };
 
 // update email
