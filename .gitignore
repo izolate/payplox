@@ -26,7 +26,7 @@ node_modules
 
 # Bower modules
 app/static/vendor
-app/static/dist
+app/static/dist/*
 
 # Users Environment Variables
 .lock-wscript
