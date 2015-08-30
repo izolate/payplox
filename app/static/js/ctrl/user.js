@@ -1,15 +1,12 @@
 import User from '../models/user';
 import serialize from 'form-serialize';
-import domready from 'domready';
 
 export default (app) => {
 
   // create user object
-  domready(() => {
     let userId = $('body').data('user-id');
     if (userId)
       app.user = new User(userId);
-  });
 
   // localized element cache
   let el = app.$el.user = {

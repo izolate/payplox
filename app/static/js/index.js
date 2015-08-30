@@ -1,25 +1,11 @@
-import config from './config';
-import events from 'events';
-import domready from 'domready';
+import events from 'events'
 
-// controllers
-import userCtrl from './controllers/user';
-import clientCtrl from './controllers/client';
-
-// config
 class App extends events.EventEmitter {
-  constructor() {
-    super(); // init
+  constructor () {
+    super()
   }
 }
 
-let app = window.app = new App();
+let app = window.app = new App()
 
-// initiate controllers
-userCtrl(app);
-clientCtrl(app);
-
-// let's go
-domready(() => {
-  console.info(app.config.name + ' started');
-});
+console.info('Payplox app started')

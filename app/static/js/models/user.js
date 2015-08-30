@@ -1,67 +1,55 @@
-import Base from './base';
+import Base from './base'
 
 export default class User extends Base {
-  constructor(id) {
-    super(id);
+  constructor (id) {
+    super(id)
   }
 
-  // update email
-  updateEmail(data, callback) {
-    this.request({
-      method: 'put',
-      url: '/user/email',
-      data: data,
-      callback: callback
-    });
+  /**
+   * Updates
+   */
+  updateEmail (data) {
+    return this.request({
+      method: 'PUT', data: data,
+      url: '/user/email'
+    })
   }
 
-  // update password
-  updatePassword(data, callback) {
-    this.request({
-      method: 'put',
-      url: '/user/password',
-      data: data,
-      callback: callback
-    });
+  updatePassword (data) {
+    return this.request({
+      method: 'PUT', data: data,
+      url: '/user/password'
+    })
   }
 
-  // update address
-  updateAddress(data, callback) {
-    this.request({
-      method: 'put',
-      url: '/user/address',
-      data: data,
-      callback: callback
-    });
+  updateAddress (data) {
+    return this.request({
+      method: 'PUT', data: data,
+      url: '/user/address'
+    })
   }
 
-  // delete address
-  deleteAddress(id, data, callback) {
-    this.request({
-      method: 'delete',
-      url: '/user/address/'+id,
-      data: data,
-      callback: callback
-    });
+  updatePayment (data) {
+    return this.request({
+      method: 'PUT', data: data,
+      url: '/user/payment'
+    })
   }
 
-  // update payment details
-  updatePayment(data, callback) {
-    this.request({
-      method: 'put',
-      url: '/user/payment',
-      data: data,
-      callback: callback
-    });
+  /**
+   * Deletions
+   */
+  deleteAddress (id, data) {
+    return this.request({
+      method: 'DELETE', data: data,
+      url: `/user/address/${id}`
+    })
   }
 
-  // delete payment details
-  deletePayment(id, data, callback) {
-    this.request({
-      method: 'delete',
-      url: '/user/payment/'+id,
-      data: data,
-      callback: callback
-    });
+  deletePayment (id, data) {
+    return this.request({
+      method: 'DELETE', data: data,
+      url: `/user/payment/${id}`
+    })
   }
 }

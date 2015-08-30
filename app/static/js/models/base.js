@@ -1,21 +1,18 @@
-/**
- * base model
- */
 export default class Base {
 
-  constructor(id) {
-    this.id = id;
+  constructor (id) {
+    this.id = id
   }
 
-  // send an AJAX request
-  request(data) {
-    $.ajax({
-      type: data.method,
-      url: data.url,
-      data: data.data,
-      success: function(resp) {
-        data.callback(resp);
-      }
-    });
+  // Send an HTTP request
+  request (options) {
+    return fetch(options.url, {
+      method: options.method.toUpperCase(),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json
+      },
+      body: JSON.stringify(options.data)
+    })
   }
 }
