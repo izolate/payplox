@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/izolate/skeleton",
   "dependencies": {
-    "babelify": "^6.1.2",
-    "bcryptjs": "^2.1.0",
+    "babelify": "^6.3.0",
+    "bcryptjs": "^2.2.1",
     "body-parser": "^1.10.0",
     "browserify": "^10.2.1",
     "connect-flash": "^0.1.1",
