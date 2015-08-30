@@ -1,7 +1,7 @@
-var Client = require('../models/client');
-var help = require('../controllers/helpers');
-var ObjectId = require('mongoose').Types.ObjectId;
-var countries = require('country-list')();
+var Client = require('../models/client')
+var ObjectId = require('mongoose').Types.ObjectId
+var countries = require('country-list')()
+const protect = require('../utils').auth
 
 /**
  * Get all available clients
@@ -12,13 +12,13 @@ function readClients(req, res) {
     .find({ '_user': new ObjectId(req.user._id) })
     .lean()
     .exec(function(err, clients) {
-      if (err) throw err;
+      if (err) throw err
 
       res.render('pages/clients', {
         clients: clients,
         countries: countries.getData()
-      });
-    });
+      })
+    })
 }
 
 /**
@@ -30,13 +30,13 @@ function readClient(req, res) {
     .findOne({ '_id':req.params.clientId, '_user':req.user._id })
     .lean()
     .exec(function(err, resp) {
-      if (err) throw err;
+      if (err) throw err
 
       res.render('pages/client', {
         client: resp,
         countries: countries.getData()
-      });
-    });
+      })
+    })
 }
 
 /**
@@ -44,14 +44,14 @@ function readClient(req, res) {
  * @method: POST
  */
 function createClient(req, res, next) {
-  var data = req.body;
-  data._user = req.user._id;
+  var data = req.body
+  data._user = req.user._id
 
-  var client = new Client(data);
+  var client = new Client(data)
   client.save(function(err, resp) {
-    if (err) throw err;
-    res.redirect('/clients');
-  });
+    if (err) throw err
+    res.redirect('/clients')
+  })
 }
 
 /**
@@ -66,11 +66,11 @@ function updateClient(req, res) {
     },
     req.body, null, function(err, edited, resp) {
       if (err)
-        res.status(500).send(err);
+        res.status(500).send(err)
 
       if (edited)
-        res.send('success');
-    });
+        res.send('success')
+    })
 }
 
 /**
@@ -84,21 +84,21 @@ function deleteClient(req, res, next) {
     })
     .remove()
     .exec(function(err, resp) {
-      if (err) next(err);
-      res.send('success');
-    });
+      if (err) next(err)
+      res.send('success')
+    })
 }
 
 function setup(app, passport) {
   // create
-  app.post('/clients', help.protect, createClient);
+  app.post('/clients', protect, createClient)
   // read
-  app.get('/clients', help.protect, readClients);
-  app.get('/clients/:clientId', help.protect, readClient);
+  app.get('/clients', protect, readClients)
+  app.get('/clients/:clientId', protect, readClient)
   // update
-  app.put('/clients/:clientId', help.protect, updateClient);
+  app.put('/clients/:clientId', protect, updateClient)
   // delete
-  app.delete('/clients/:clientId', help.protect, deleteClient);
+  app.delete('/clients/:clientId', protect, deleteClient)
 }
 
-module.exports = setup;
+module.exports = setup

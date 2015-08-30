@@ -1,15 +1,15 @@
-var help = require('../controllers/helpers.js');
+const protect = require('../utils').auth
 
 function home(req, res) {
-  res.render('pages/home');
+  res.render('pages/home')
 }
 
 function dashboard(req, res, next) {
-  res.render('pages/dashboard');
+  res.render('pages/dashboard')
 }
 
 function setup(app, passport) {
-  app.get('/dashboard', help.protect, dashboard);
-  app.get('/', home);
+  app.get('/dashboard', protect, dashboard)
+  app.get('/', home)
 }
-module.exports = setup;
+module.exports = setup

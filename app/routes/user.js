@@ -1,5 +1,5 @@
-var help = require('../controllers/helpers');
-var User = require('../models/user');
+var protect = require('../utils').auth
+var User = require('../models/user')
 
 /**
  * Signup page
@@ -9,7 +9,7 @@ function signup(req, res) {
   res.render('pages/login', {
     form: 'signup',
     message: req.flash('message')
-  });
+  })
 }
 
 /**
@@ -20,7 +20,7 @@ function login(req, res) {
   res.render('pages/login', {
     form: 'login',
     message: req.flash('message')
-  });
+  })
 }
 
 /**
@@ -28,8 +28,8 @@ function login(req, res) {
  * @method: GET
  */
 function logout(req, res) {
-  req.logout();
-  res.redirect('/');
+  req.logout()
+  res.redirect('/')
 }
 
 /**
@@ -38,14 +38,14 @@ function logout(req, res) {
  */
 function updateEmail(req, res, next) {
   var query = User.findOne({ _id: req.user._id }, function(err, user) {
-    if (err) next(err);
+    if (err) next(err)
 
     user.updateEmail(req.body.email, function(err, user) {
-      if (err) res.status(500).send(err.message);
+      if (err) res.status(500).send(err.message)
       else
-        res.send({ _id: user._id, email: user.email });
-    });
-  });
+        res.send({ _id: user._id, email: user.email })
+    })
+  })
 }
 
 /**
@@ -54,15 +54,15 @@ function updateEmail(req, res, next) {
  */
 function updatePassword(req, res, next) {
   var user = User.findOne({ _id: req.user._id }, function(err, user) {
-    if (err) next(err);
+    if (err) next(err)
 
     user.updatePassword({
       current: req.body.currentPass, new: req.body.newPass
     }, function(err, resp) {
-      if (err) res.status(500).send(err.message);
-      else res.send('Password changed');
-    });
-  });
+      if (err) res.status(500).send(err.message)
+      else res.send('Password changed')
+    })
+  })
 }
 
 /**
@@ -73,9 +73,9 @@ function updateAddress(req, res, next) {
   User.update({ _id: req.user._id },
     { $push: { address: req.body.address }},
     function(err, user) {
-      if (err) res.status(500).send(err.message);
-      else res.send('New address added');
-  });
+      if (err) res.status(500).send(err.message)
+      else res.send('New address added')
+  })
 }
 
 /**
@@ -86,9 +86,9 @@ function deleteAddress(req, res, next) {
   User.update({ _id: req.user._id },
     { $pull: { address: { _id: req.params.id }}},
     function(err, user) {
-      if (err) res.status(500).send(err.message);
-      else res.send('Address deleted');
-  });
+      if (err) res.status(500).send(err.message)
+      else res.send('Address deleted')
+  })
 }
 
 /**
@@ -99,9 +99,9 @@ function updatePayment(req, res, next) {
   User.update({ _id: req.user._id },
     { $push: { payment: req.body.payment }},
     function(err, user) {
-      if (err) res.status(500).send(err.message);
-      else res.send('Payment details added');
-  });
+      if (err) res.status(500).send(err.message)
+      else res.send('Payment details added')
+  })
 }
 
 /**
@@ -112,9 +112,9 @@ function deletePayment(req, res, next) {
   User.update({ _id: req.user._id },
     { $pull: { payment: { _id: req.params.id }}},
     function(err, user) {
-      if (err) res.status(500).send(err.message);
-      else res.send('Payment deleted');
-  });
+      if (err) res.status(500).send(err.message)
+      else res.send('Payment deleted')
+  })
 }
 
 function setup(app, passport) {
@@ -123,28 +123,28 @@ function setup(app, passport) {
     successRedirect : '/dashboard',
     failureRedirect : '/signup',
     failureFlash : true
-  }));
+  }))
 
   app.post('/login', passport.authenticate('login', {
     successRedirect : '/dashboard',
     failureRedirect : '/login',
     failureFlash : true
-  }));
+  }))
 
   // read
-  app.get('/signup', signup);
-  app.get('/login', login);
-  app.get('/logout', logout);
+  app.get('/signup', signup)
+  app.get('/login', login)
+  app.get('/logout', logout)
 
   // update
-  app.put('/user/email', help.protect, updateEmail);
-  app.put('/user/password', help.protect, updatePassword);
-  app.put('/user/address', help.protect, updateAddress);
-  app.put('/user/payment', help.protect, updatePayment);
+  app.put('/user/email', protect, updateEmail)
+  app.put('/user/password', protect, updatePassword)
+  app.put('/user/address', protect, updateAddress)
+  app.put('/user/payment', protect, updatePayment)
 
   // delete
-  app.delete('/user/address/:id', help.protect, deleteAddress);
-  app.delete('/user/payment/:id', help.protect, deletePayment);
+  app.delete('/user/address/:id', protect, deleteAddress)
+  app.delete('/user/payment/:id', protect, deletePayment)
 }
 
-module.exports = setup;
+module.exports = setup

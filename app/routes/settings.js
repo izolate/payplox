@@ -1,18 +1,13 @@
-var router = require('express').Router();
-var help = require('../controllers/helpers');
-var User = require('../models/user');
+var router = require('express').Router()
+var User = require('../models/user')
 
-router.use(help.protect);
+router.use(require('../utils').auth)
 
-/**
- * Settings page
- * @method: GET
- */
 router.get('/', function(req, res, next) {
   res.render('pages/settings', {
     message: req.flash('message')
-  });
-});
+  })
+})
 
 
-module.exports = router;
+module.exports = router

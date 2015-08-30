@@ -23,10 +23,10 @@ app.use(session({
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-require('./controllers/csrf')(app)
+require('./ctrl/csrf')(app)
 
 // passport
-require('./controllers/passport')(passport)
+require('./ctrl/passport')(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
@@ -39,7 +39,7 @@ app.set('view engine', 'jade')
 app.use('/static', express.static(`${__dirname}/static`))
 
 // routes
-require('./controllers/route')(app)
+require('./ctrl/routes')(app)
 
 ;[
   { route: '/configuration', path: './routes/configuration' },
