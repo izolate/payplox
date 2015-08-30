@@ -1,17 +1,10 @@
-var util = require('util');
-var config = require('./config.js');
-var mongoose = require('mongoose');
-
-var db, url;
-
-url = util.format('%s%s:%d/%s',
-  config.db.protocol, config.db.host,
-  config.db.port, config.db.collection
-);
+const util = require('util')
+const config = require('./config.js')
+const mongoose = require('mongoose')
+const dbUrl = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
 
 exports.connect = function() {
-  if (!db)
-    db = mongoose.connect(url);
-
-  return db;
-};
+  let db
+  if (!db) db = mongoose.connect(dbUrl)
+  return db
+}

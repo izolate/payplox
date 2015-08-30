@@ -1,3 +1,4 @@
+require('dotenv').load()
 const express = require('express')
 const config = require('./config')
 const app = express()
@@ -8,14 +9,15 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 
-// config
+// Configuration
+app.locals.pretty = (process.env.NODE_ENV === 'development')
 app.use(function (req, res, next) {
   res.locals.req = req
   next()
 })
 app.use(cookieParser())
 app.use(session({
-  secret: 'they were like northern stars',
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true
 }))
@@ -54,10 +56,9 @@ require('./controllers/route')(app)
   require(routePath)(app, passport)
 })
 
-// let's do this
-app.listen(config.express.port, config.express.ip, function (error) {
-  if (error)
-    console.error(error)
+// Run application
+app.listen(process.env.NODE_PORT, function (err) {
+  if (err) console.error(err)
   else
-    console.log(`Payplox listening on localhost:${config.express.port}`)
+    console.log(`${process.env.APP_NAME} listening on localhost:${process.env.NODE_PORT}`)
 })
