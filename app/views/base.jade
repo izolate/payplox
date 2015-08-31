@@ -3,12 +3,9 @@
 doctype html
 html(lang='en')
   head
-    include components/head
+    include blocks/head
 
   body(data-user-id=userId, class=routeName.join(' '))
     block body
-    block footer
-
-    //- SCRIPTS
     block scripts
       script(src='/static/dist/index.js')

@@ -42,11 +42,8 @@ app.use('/static', express.static(`${__dirname}/static`))
 // routes
 require('./ctrl/routes')(app)
 
-;[
-  { route: '/configuration', path: './routes/configuration' },
-  { route: '/settings', path: './routes/settings' }
-].forEach(function(module) {
-  app.use(module.route, require(module.path))
+;['me', 'settings'].forEach(function (module) {
+  app.use(`/${module}`, require(`./routes/${module}`))
 })
 
 ;[

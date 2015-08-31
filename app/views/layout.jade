@@ -2,17 +2,11 @@ extends ./base
 
 block body
 
-  .scaffold
-    //- aside
-    aside.scaffold__item
-      a.aside__logo
-        img(src='/static/img/logo.svg', alt='logo')
-      include components/nav/main
-      block aside
+  .app-fragment
 
-    //- main
-    main.scaffold__item
+    //- Sidebar
+    include blocks/sidebar
+
+    //- Main content
+    main.app-fragment__item.main
       block main
-
-block footer
-  include components/footer

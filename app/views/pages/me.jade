@@ -1,0 +1,16 @@
+extends ../layout
+
+append main
+
+  nav.tabs(class='#{routeName[1]}')
+    a.tabs__item.active(href='/me/services').
+      Services
+    a.tabs__item(href='/me/addresses').
+      Addresses
+    a.tabs__item(href='/me/payment').
+      Payment details
+
+  include ../blocks/me/address
+  include ../blocks/me/payment
+
+  blockquote #{req.user}

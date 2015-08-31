@@ -31,3 +31,6 @@ node_modules
 # Compiled assets
 app/static/dist
 app/static/vendor
+
+# OS X
+.DS_Store
