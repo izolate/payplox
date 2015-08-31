@@ -6,7 +6,6 @@ const csrf = require('csurf')
  */
 app.use(csrf())
 app.use(function (err, req, res, next) {
-  console.log('fuck')
   if (err.code !== 'EBADCSRFTOKEN') return next(err)
 
   // handle CSRF token errors
