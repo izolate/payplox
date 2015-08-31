@@ -2,15 +2,16 @@ extends ../layout
 
 append main
 
-  nav.tabs(class='#{routeName[1]}')
-    a.tabs__item.active(href='/me/services').
-      Services
-    a.tabs__item(href='/me/addresses').
-      Addresses
-    a.tabs__item(href='/me/payment').
-      Payment details
+  .tabs.me
+    .tabs__title
+      h1.h3 Details about you
+
+    nav.tabs__nav(class='#{routeName[1]}')
+      a.active(href='/me/services', data-target='skills') Your skills
+      a(href='/me/addresses', data-target='mailing-address') Mailing address
+      a(href='/me/payment', data-target='payment-methods') Payment methods
 
   include ../blocks/me/address
   include ../blocks/me/payment
 
-  blockquote #{req.user}
+  code #{req.user}

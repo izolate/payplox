@@ -5,7 +5,10 @@ const countries = require('country-list')()
 router.use(require('../utils').auth)
 
 router.get('/', function (req, res, next) {
-  res.redirect('/me/services')
+  res.render('pages/me', {
+    countries: countries.getData(),
+    message: req.flash('message')
+  })
 })
 
 /**
