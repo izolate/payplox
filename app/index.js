@@ -1,7 +1,6 @@
 require('dotenv').load()
 const express = require('express')
-const config = require('./config')
-const app = express()
+const app = module.exports = express()
 const db = require('./db.js').connect()
 const passport = require('passport')
 const session = require('express-session')
@@ -23,7 +22,9 @@ app.use(session({
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-require('./ctrl/csrf')(app)
+// Database
+app.use(require('./ctrl/db'))
+require('./ctrl/csrf')
 
 // passport
 require('./ctrl/passport')(passport)
