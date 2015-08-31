@@ -22,9 +22,9 @@ app.use(session({
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Database
+// Database & Security
 app.use(require('./ctrl/db'))
-require('./ctrl/csrf')
+require('./ctrl/security')
 
 // passport
 require('./ctrl/passport')(passport)
