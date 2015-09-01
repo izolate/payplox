@@ -57,7 +57,7 @@ module.exports = function(passport) {
   },
   function(req, email, password, done) {
 
-    findOrCreateUser = function() {
+    let findOrCreateUser = function() {
       // search for a user with that email
       User.findOne({ 'email': email }, function(err, user) {
         if (err)
