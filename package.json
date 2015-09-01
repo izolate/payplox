@@ -10,7 +10,7 @@
     "js:dev": "browserify app/static/js/index.js -t babelify --debug -o app/static/dist/index.js",
     "js:prd": "browserify app/static/js/index.js -t babelify -t uglifyify -o app/static/dist/index.js",
     "watch": "chokidar 'app/static/{styl,js}/**/*.{styl,js}' -c 'npm run develop'",
-    "start": "pm2 start app/index.js --name payplox --interpreter iojs --node-args '--harmony --use-strict'"
+    "start": "pm2 start app/index.js --name payplox --interpreter iojs --node-args '--harmony --use-strict' --ignore-watch 'app/static'"
   },
   "repository": {
     "type": "git",
