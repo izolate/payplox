@@ -42,7 +42,9 @@ app.use('/static', express.static(`${__dirname}/static`))
 // routes
 require('./ctrl/routes')(app)
 
-;['me', 'settings'].forEach(function (module) {
+;[
+  'invoices', 'me', 'settings'
+].forEach(function (module) {
   app.use(`/${module}`, require(`./routes/${module}`))
 })
 

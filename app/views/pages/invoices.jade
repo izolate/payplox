@@ -1,0 +1,11 @@
+extends ../layout
+
+append main
+
+  .tabs.invoices
+    .tabs__title
+      h1.h3 Invoices sent out
+
+    nav.tabs__nav
+      a.active(data-target='open') Currently open
+      a(data-target='closed') Closed
