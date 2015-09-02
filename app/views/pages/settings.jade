@@ -1,9 +1,15 @@
 extends ../layout
 
 append main
-  h1.h2 Settings
 
-  blockquote #{req.user}
+  .tabs.tabs--alt.settings
+    nav.tabs__nav
+      a.active(data-target='account') Account
+      a(data-target='billing') Billing
+      a(data-target='support') Support
 
-  include ../blocks/settings/email
-  include ../blocks/settings/password
+  //- Account settings
+  section.account
+    h2.h3 Account settings
+    include ../blocks/settings/form
+    code #{req.user}

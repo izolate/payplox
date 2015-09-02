@@ -1,0 +1,27 @@
+- var userId = req.user._id.toString()
+
+form.settings__form(
+  name='settings_account',
+  method='put',
+  action='/user/#{userId}',
+  data-csrf=req.csrfToken(),
+  data-userId=userId
+)
+  //- Name
+  label.form__item
+    span Name
+    input(type='email', name='name', placeholder='Full name', value=req.user.name || '')
+
+  //- Email
+  label.form__item
+    span Email
+    input(type='email', name='email', placeholder='Email', value=req.user.email)
+
+  //- Password
+  label.form__item
+    span Password
+    input(type='password', name='oldPassword', placeholder='Old password')
+    input(type='password', name='newPassword', placeholder='New password')
+
+  .form__item.buttons
+    button(type='submit') Save changes
