@@ -5,12 +5,12 @@ form.settings__form(
   method='put',
   action='/user/#{userId}',
   data-csrf=req.csrfToken(),
-  data-userId=userId
+  data-user-id=userId
 )
   //- Name
   label.form__item
     span Name
-    input(type='email', name='name', placeholder='Full name', value=req.user.name || '')
+    input(type='text', name='name', placeholder='Full name', value=req.user.name || '')
 
   //- Email
   label.form__item
@@ -20,8 +20,9 @@ form.settings__form(
   //- Password
   label.form__item
     span Password
-    input(type='password', name='oldPassword', placeholder='Old password')
-    input(type='password', name='newPassword', placeholder='New password')
+    .settings__password.inactive
+      input(type='password', name='old_password', value='h4x0r', disabled)
+      input.hidden(type='password', name='new_password', placeholder='New password')
 
   .form__item.buttons
-    button(type='submit') Save changes
+    button.button--primary(type='submit') Save changes
