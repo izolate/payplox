@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/izolate/skeleton",
   "dependencies": {
+    "babel": "^5.8.23",
     "babelify": "^6.3.0",
     "bcryptjs": "^2.2.1",
     "body-parser": "^1.13.3",
@@ -35,6 +36,7 @@
     "dotenv": "^1.2.0",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
+    "foreach": "^2.0.5",
     "form-serialize": "^0.6.0",
     "jade": "^1.11.0",
     "mongodb": "^2.0.42",

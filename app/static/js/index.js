@@ -1,3 +1,5 @@
+require('babel/polyfill')
+
 import events from 'events'
 import controllers from './ctrl/controllers'
 import { Delegate } from 'dom-delegate'

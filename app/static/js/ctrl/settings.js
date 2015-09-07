@@ -24,7 +24,7 @@ function enablePasswordInput () {
   this.disabled = false
   this.placeholder = 'Old password'
   this.parentNode.classList.remove('inactive')
-  this.nextElementSibling.style.display = 'block'
+  this.nextElementSibling.classList.remove('hidden')
 
   return this.focus()
 }
@@ -34,5 +34,6 @@ function formData () {
   let data = Serialize(this, { hash: true })
   data._csrf = this.dataset.csrf
   data.userId = this.dataset.userId
+
   return data
 }

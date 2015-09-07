@@ -3,11 +3,16 @@ extends ../layout
 append main
   .tabs.tabs--alt.settings
     nav.tabs__nav
-      a.active(data-target='account') Account
-      a(data-target='billing') Billing
-      a(data-target='support') Support
+      a.account.active(data-target='account') Account
+      a.billing(data-target='billing') Billing
+      a.support(data-target='support') Support
 
   //- Account settings
-  section.account
+  section.account.tabs__content
     h2.h3 Account settings
     include ../blocks/settings/form
+
+  //- Billing overview
+  section.billing.tabs__content.hidden
+    h2.h3 Billing overview
+    include ../blocks/settings/billing
