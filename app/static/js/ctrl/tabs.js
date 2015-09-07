@@ -14,13 +14,14 @@ export default (app) => {
 }
 
 function changeTab (targetClass) {
-  forEach(nav.children, link => link.classList.remove('active'))
-  forEach(sections, section => section.classList.add('hidden'))
-
   // add active class to correct nav element
+  forEach(nav.children, link => link.classList.remove('active'))
   this.classList.add('active')
 
   // show the appropriate section
-  for (let i = sections.length; i--;)
-    if (sections[i].matches(`.${targetClass}`)) sections[i].classList.remove('hidden')
+  for (let i = sections.length; i--;) {
+    if (sections[i].matches(`.${targetClass}`))
+      sections[i].classList.remove('hidden')
+    else sections[i].classList.add('hidden')
+  }
 }
