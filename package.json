@@ -1,52 +1,43 @@
 {
-  "name": "skeleton",
+  "name": "Payplox",
   "version": "1.0.0",
-  "description": "Starter skeleton for a web app",
+  "description": "Why am I creating an invoice application?",
   "main": "app/index.js",
   "scripts": {
-    "develop": "npm run js:dev && npm run css",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "css": "stylus app/static/styl/index.styl -o app/static/dist/",
+    "develop": "npm run js:dev",
     "js:dev": "browserify app/static/js/index.js -t babelify --debug -o app/static/dist/index.js",
     "js:prd": "browserify app/static/js/index.js -t babelify -t uglifyify -o app/static/dist/index.js",
-    "watch": "chokidar 'app/static/{styl,js}/**/*.{styl,js}' -c 'npm run develop'",
-    "start": "pm2 start app/index.js --name payplox --interpreter iojs --node-args '--harmony --use-strict' --ignore-watch 'app/static'"
+    "start": "node --use_strict app/index"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/izolate/skeleton.git"
+    "url": "https://github.com/izolate/payplox.git"
   },
-  "author": "izolate",
+  "author": "izolate <yoshtalwar@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/izolate/skeleton/issues"
+    "url": "https://github.com/izolate/payplox/issues"
   },
-  "homepage": "https://github.com/izolate/skeleton",
+  "homepage": "https://github.com/izolate/payplox",
   "dependencies": {
-    "babel": "^5.8.23",
-    "babelify": "^6.3.0",
-    "bcryptjs": "^2.2.1",
+    "babelify": "^6.1.3",
     "body-parser": "^1.13.3",
-    "browserify": "^10.2.6",
-    "connect-flash": "^0.1.1",
+    "browserify": "^11.0.0",
     "cookie-parser": "^1.3.5",
-    "country-list": "0.0.3",
-    "csurf": "^1.8.3",
-    "dom-delegate": "^2.0.3",
     "dotenv": "^1.2.0",
-    "express": "^4.13.3",
-    "express-session": "^1.11.3",
-    "foreach": "^2.0.5",
-    "form-serialize": "^0.6.0",
+    "express": "^4.13.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-csso": "^1.0.0",
+    "gulp-if": "^1.2.5",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-stylus": "^2.0.5",
+    "gulp-uglify": "^1.2.0",
     "jade": "^1.11.0",
-    "mongodb": "^2.0.42",
-    "mongoose": "^3.9.7",
-    "passport": "^0.2.2",
-    "passport-local": "^1.0.0",
-    "stylus": "^0.51.1",
-    "uglifyify": "^3.0.1"
-  },
-  "devDependencies": {
-    "chokidar-cli": "^0.2.1"
+    "require-dir": "^0.3.0",
+    "rupture": "^0.6.1",
+    "stylus": "^0.52.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

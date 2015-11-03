@@ -1,12 +1,10 @@
-extends ./base
+doctype html
+html(lang='en')
+  head
+    include components/head
 
-block body
+  body
+    block body
 
-  .app-fragment
-
-    //- Sidebar
-    include blocks/sidebar
-
-    //- Main content
-    main.app-fragment__item.main(class=routeName.join(' '))
-      block main
+    block scripts
+      script(src='/static/dist/index.js')
