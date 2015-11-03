@@ -1,0 +1,39 @@
+page = settings
+
+.{page}
+  h2
+    margin-bottom 1em
+
+  section
+    margin 0 30px
+    background-color white
+    border 1px solid rgba(0,0,0,0.1)
+    padding 30px
+
+  form
+    max-width 480px
+
+  .form__item
+    margin-bottom 1.5em
+
+  label span
+    display block
+    margin-bottom .25em
+
+.{page}__password
+  position relative
+
+  &.inactive::after
+    content 'Click to edit'
+    position absolute
+    top 8px
+    right 1em
+    color #888
+    pointer-events none
+
+  input:first-child
+    margin-bottom .5em
+
+  input[type=password]:disabled
+    cursor pointer
+    letter-spacing 3px
