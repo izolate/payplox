@@ -1,5 +1,5 @@
-var router = require('express').Router()
-var User = require('../models/user')
+const router = module.exports = require('express').Router()
+const User = require('../models/user')
 
 router.use(require('../utils').auth)
 
@@ -8,6 +8,3 @@ router.get('/', function(req, res, next) {
     message: req.flash('message')
   })
 })
-
-
-module.exports = router

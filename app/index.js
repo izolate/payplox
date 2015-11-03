@@ -2,11 +2,11 @@ require('dotenv').load()
 const express = require('express')
 const app = module.exports = express()
 const db = require('./db.js').connect()
-const passport = require('passport')
+//const passport = require('passport')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const flash = require('connect-flash')
+//const flash = require('connect-flash')
 
 // Configuration
 app.locals.pretty = (process.env.NODE_ENV === 'development')
@@ -26,11 +26,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(require('./ctrl/db'))
 require('./ctrl/security')
 
-// passport
-require('./ctrl/passport')(passport)
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
+// Configuration
+require('./config/passport')(app)
+//require('./ctrl/passport')(passport)
+//app.use(passport.initialize())
+//app.use(passport.session())
+//app.use(flash())
 
 // views
 app.set('views', `${__dirname}/views`)
@@ -41,9 +42,15 @@ app.use('/static', express.static(`${__dirname}/static`))
 
 // routes
 require('./ctrl/routes')(app)
+require('./routes/base')(app)
 
 ;[
-  'invoices', 'me', 'settings'
+  'users'
+].forEach(module => app.use(`/${module}`, require(`./routes/${module}`)))
+
+/*
+;[
+  //'users', 'invoices', 'me', 'settings'
 ].forEach(function (module) {
   app.use(`/${module}`, require(`./routes/${module}`))
 })
@@ -55,6 +62,7 @@ require('./ctrl/routes')(app)
 ].forEach(function(routePath) {
   require(routePath)(app, passport)
 })
+*/
 
 // Run application
 app.listen(process.env.NODE_PORT, function (err) {
