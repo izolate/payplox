@@ -1,26 +1,28 @@
 extends ../base
 
 prepend body
-  form(method='post', action='/login')
-    h1 Login
-    label
-      h3 Email
-      input(type='email', name='email', required)
-    label
-      h3 Password
-      input(type='password', name='password', required)
-    button(type='submit') Submit
+
+  main.login
+
+    .login__container
+      if form == 'login'
+        form(method='post', action='/login')
+          h1 Login.
+          label
+            input(type='email', name='email', placeholder='Email', required)
+          label
+            input(type='password', name='password', placeholder='Password', required)
+          button.button--primary.button--wide(type='submit') Submit
 
 
-  form(method='post', action='/signup')
-    h1 Signup
-    label
-      h3 Email
-      input(type='email', name='email', required)
-    label
-      h3 Password
-      input(type='password', name='password', required)
-    button(type='submit') Submit
+      if form == 'signup'
+        form(method='post', action='/signup')
+          h1 Signup.
+          label
+            input(type='email', name='email', placeholder='Email', required)
+          label
+            input(type='password', name='password', placeholder='Password', required)
+          button.button--primary.button--wide(type='submit') Submit
 
-  if error
-    pre.error= error
+      if error
+        pre.error= error

@@ -9,6 +9,11 @@ const GET = {
   signup (req, res, next) {
     if (req.session.user) return res.redirect('/dash')
     else return res.render('pages/login', { form: 'signup' })
+  },
+
+  logout (req, res, next) {
+    if (req.session.user) req.session.regenerate(err => res.redirect('/'))
+    else return res.redirect('/')
   }
 }
 
@@ -29,7 +34,7 @@ const POST = {
         }
         else throw new Error('Bad login :(')
       })
-      .catch(nope => res.render('pages/login', { error: nope.message }))
+      .catch(nope => res.render('pages/login', { form: 'login', error: nope.message }))
   },
 
   // User signup
@@ -47,7 +52,7 @@ const POST = {
           res.redirect('/dash')
         })
       })
-      .catch(nope => res.render('pages/login', { error: nope.message }))
+      .catch(nope => res.render('pages/login', { form: 'signup', error: nope.message }))
   }
 }
 
