@@ -31,7 +31,6 @@ app.use(session({
 
 // Routes
 app.use('/', require('./routes'))
-app.use('/module', require('./module/routes'))
 
 // Run
 app.listen(app.get('port'), err => {
