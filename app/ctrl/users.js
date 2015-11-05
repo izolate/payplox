@@ -2,11 +2,13 @@ const Users = require('../models/users')
 
 const GET = {
   login (req, res, next) {
-    res.render('pages/login', { form: 'login' })
+    if (req.session.user) return res.redirect('/dash')
+    else return res.render('pages/login', { form: 'login' })
   },
 
   signup (req, res, next) {
-    res.render('pages/login', { form: 'signup' })
+    if (req.session.user) return res.redirect('/dash')
+    else return res.render('pages/login', { form: 'signup' })
   }
 }
 
@@ -39,10 +41,9 @@ const POST = {
         if (user) throw new Error('User already exists')
         return users.create(req.body.email, req.body.password)
       })
-      .then(created => res.redirect('/dash'))
-      .then(created => {
+      .then(yep => {
         req.session.regenerate(err => {
-          req.session.user = created
+          req.session.user = yep
           res.redirect('/dash')
         })
       })

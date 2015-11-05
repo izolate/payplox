@@ -1,0 +1,26 @@
+aside.app-fragment__item.sidebar
+
+  .sidebar__content
+    a.sidebar__logo(href='/dashboard')
+      img(src='/static/dist/img/logo.svg', alt='logo')
+
+    a.sidebar__create(href='/invoices/create')
+      img(src='/static/dist/img/icons/create.svg')
+      span.font-alt New invoice
+
+    nav.sidebar__nav
+      a.sidebar__nav__item.dashboard(href='/dash') Overview
+      a.sidebar__nav__item.invoices(href='/invoices') Invoices
+      a.sidebar__nav__item.clients(href='/clients') Clients
+      a.sidebar__nav__item.me(href='/me') You
+
+    block aside
+
+  footer.sidebar__footer
+    nav.sidebar__nav--footer
+      a(href='/invoices/create')
+        img(src='/static/dist/img/icons/create.svg', alt='pen and paper')
+      a(href='/settings')
+        img(src='/static/dist/img/icons/cog.svg', alt='cog')
+      a(href='/logout')
+        img(src='/static/dist/img/icons/logout.svg', alt='exit icon')
