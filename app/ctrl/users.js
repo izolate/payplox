@@ -12,7 +12,7 @@ const GET = {
   },
 
   logout (req, res, next) {
-    if (req.session.user) req.session.regenerate(err => res.redirect('/'))
+    if (req.session.user) return req.session.destroy(err => res.redirect('/'))
     else return res.redirect('/')
   }
 }
