@@ -2,9 +2,22 @@ page = home
 hero = home-hero
 
 // Hero
+@keyframes hero_slide_up
+  from
+    opacity 0
+    transform translateY(90px)
+  to
+    opacity 1
+    transform translateY(0px)
+
 .{hero}
   background-color grey
   color white
+
+  h1
+    animation-name hero_slide_up
+    animation-duration .75s
+    animation-timing-function ease-out
 
 .{hero}__container
   max-width 810px
