@@ -4,25 +4,35 @@ prepend body
 
   main.login
 
-    .login__container
-      if form == 'login'
-        form(method='post', action='/login')
-          h1 Login.
+    .login-container
+
+      header.login-header
+        img(src='/img/logo.svg', alt='logo')
+
+      if form == 'login' || 'signup'
+        form.login-form(method='post', action='/#{form}')
           label
-            input(type='email', name='email', placeholder='Email', required)
+            input(type='email', name='email', placeholder='email address', required)
           label
-            input(type='password', name='password', placeholder='Password', required)
-          button.button--primary.button--wide(type='submit') Submit
+            input(type='password', name='password', placeholder='password', required)
+          button.login-form__submit(type='submit')= form
 
 
-      if form == 'signup'
-        form(method='post', action='/signup')
-          h1 Signup.
-          label
-            input(type='email', name='email', placeholder='Email', required)
-          label
-            input(type='password', name='password', placeholder='Password', required)
-          button.button--primary.button--wide(type='submit') Submit
+      footer.login-footer
+        if form == 'login'
+          small
+            | Are you new here? 
+            strong
+              a(href='/signup') Create an account
+
+        if form == 'signup'
+          small
+            | By signing up, you're indicating that you've read the 
+            strong
+              a(href='/privacy') Privacy Policy
+            |  and agree to the 
+            strong
+              a(href='/terms') Terms of Service.
 
       if error
         pre.error= error

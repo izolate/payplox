@@ -1,15 +1,71 @@
 page = login
+form = login-form
 
 .{page}
-  width inherit
-  height inherit
+  width 100%
+  min-height 100vh
   display flex
+  flex-direction column
   justify-content center
   align-items center
+  background-color blue
+  +below(480px)
+    justify-content flex-start
 
-.{page}__container
+.{page}-container
+  width 100%
+  max-width 480px
+  padding 1em
+
+.{page}-header
+  padding 1em
+  background-color white
+  img
+    display block
+    height 50px
+
+.{page}-footer
+  display block
+  max-width 360px
+  margin 2em auto 0
+  text-align center
+  color white
+  a
+    color white
+    text-decoration underline
+
+.{page}
+  label,
+  input,
+  button
+    display block
     width 100%
-    max-width 360px
 
-.{page} label
-  margin-bottom 1em
+  input,
+  button
+    border none
+    outline none
+    font-weight 500
+    height 45px
+
+  input
+    padding 0 1em
+
+  label
+    position relative
+    &::after
+      content ''
+      position absolute
+      bottom 0
+      left 10%
+      width 80%
+      height 1px
+      background #eee
+
+// Form
+button.{form}__submit
+  background-color white
+  font-size fontSize-base * 1.25
+  height 55px
+  line-height 55px
+  color blue
