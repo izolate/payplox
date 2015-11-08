@@ -9,6 +9,7 @@ const protect = (req, res, next) => {
 
 // Hello World!
 router.get('/', (req, res, next) => res.render('pages/home'))
+router.get('/design', (req, res, next) => res.render('pages/design')) // TODO remove
 router.get('/dash', protect, (req, res, next) => {
   res.render('pages/dash')
 })

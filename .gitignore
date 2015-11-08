@@ -25,3 +25,6 @@ app/static/dist
 
 # Vagrant
 .vagrant
+
+# OS X
+.DS_Store
