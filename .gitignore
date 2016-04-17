@@ -28,3 +28,6 @@ app/static/dist
 
 # OS X
 .DS_Store
+
+# Old files
+.old
